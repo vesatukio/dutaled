@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duta Terang - LED & Audio</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f4f4; }
+        
+        /* Slider Styling */
+        .swiper { width: 100%; height: 200px; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Kotak Pencarian di Tengah Slider */
+        .search-container { position: absolute; top: 140px; width: 90%; left: 5%; z-index: 10; }
+        .search-box { width: 100%; padding: 12px; border-radius: 25px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.2); outline: none; }
+        
+        /* Grid Produk */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 70px 15px 15px 15px; }
+        .card { background: white; padding: 10px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; }
+        .btn-buy { background: #ff6600; color: white; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 5px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- Slider -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper" id="slider-container">
+            <div class="swiper-slide"><img src="https://via.placeholder.com/400x200?text=Promo+Duta+Terang+1"></div>
+            <div class="swiper-slide"><img src="https://via.placeholder.com/400x200?text=Promo+Duta+Terang+2"></div>
+        </div>
+    </div>
+
+    <!-- Pencarian -->
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Cari komponen LED / Audio...">
+    </div>
+
+    <!-- Katalog -->
+    <div class="grid" id="product-list">
+        <!-- Produk akan muncul di sini -->
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="Produk">
+            <p style="margin: 5px 0; font-size: 0.9rem;">LED Driver 30W</p>
+            <p style="font-weight: bold; color: #333;">Rp 25.000</p>
+            <button class="btn-buy">Beli Sekarang</button>
+        </div>
+    </div>
+
+    <!-- Swiper JS & Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            loop: true
+        });
+    </script>
+</body>
+</html>
