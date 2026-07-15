@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin - Duta Terang</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .form-card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        .btn-save { background: #16a34a; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>Tambah Produk Baru</h2>
+    <div class="form-card">
+        <input type="text" id="namaProduk" placeholder="Nama Produk">
+        <input type="number" id="hargaProduk" placeholder="Harga Jual">
+        <input type="number" id="stokProduk" placeholder="Stok">
+        <textarea id="deskripsiProduk" placeholder="Deskripsi"></textarea>
+        <button class="btn-save" onclick="tambahProduk()">Simpan Produk</button>
+    </div>
+
+    <!-- Firebase SDK (PENTING: Ganti dengan config Anda) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const firebaseConfig = { /* MASUKKAN CONFIG FIREBASE ANDA DI SINI */ };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.tambahProduk = async () => {
+            const nama = document.getElementById('namaProduk').value;
+            const harga = parseInt(document.getElementById('hargaProduk').value);
+            const stok = parseInt(document.getElementById('stokProduk').value);
+            
+            try {
+                await addDoc(collection(db, "produk"), {
+                    nama: nama,
+                    harga_jual: harga,
+                    stok: stok,
+                    created_at: new Date()
+                });
+                alert("Produk berhasil disimpan!");
+            } catch (e) {
+                alert("Gagal: " + e.message);
+            }
+        };
+    </script>
+</body>
+</html>
