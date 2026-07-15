@@ -1,16 +1,15 @@
-import { supabase } from './api/supabase-client.js';
+// Pastikan baris ini ada di paling atas main.js
+import { supabase } from './supabase-client.js';
 
-async function testKoneksi() {
-    const { data, error } = await supabase
-        .from('produk')
-        .select('*');
-
-    if (error) {
-        console.error("Gagal ambil data:", error);
-    } else {
-        console.log("Data Produk dari Supabase:", data);
-        // Di sini nanti kita akan looping data untuk ditampilkan di kartu produk
+// Fungsi untuk tes ambil data produk
+async function initApp() {
+    try {
+        const { data, error } = await supabase.from('produk').select('*');
+        if (error) throw error;
+        console.log("Produk berhasil dimuat:", data);
+    } catch (err) {
+        console.error("Gagal koneksi ke Supabase:", err.message);
     }
 }
 
-testKoneksi();
+initApp();
