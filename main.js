@@ -1,15 +1,21 @@
-// Pastikan baris ini ada di paling atas main.js
-import { supabase } from './supabase-client.js';
+import { supabase } from './api/supabase-client.js';
+import { tambahKeKeranjang } from './cart.js'; // Impor fungsi keranjang
 
-// Fungsi untuk tes ambil data produk
-async function initApp() {
-    try {
-        const { data, error } = await supabase.from('produk').select('*');
-        if (error) throw error;
-        console.log("Produk berhasil dimuat:", data);
-    } catch (err) {
-        console.error("Gagal koneksi ke Supabase:", err.message);
-    }
+async function renderProduk() {
+    const { data: produk } = await supabase.from('produk').select('*');
+    const container = document.getElementById('product-container');
+
+    container.innerHTML = produk.map(item => `
+        <div class="product-card">
+            <img src="${item.foto_urls[0]}" alt="${item.nama}">
+            <h3>${item.nama}</h3>
+            <p>Rp ${item.harga_jual.toLocaleString()}</p>
+            <button onclick='window.tambahProduk(${JSON.stringify(item)})'>Beli</button>
+        </div>
+    `).join('');
 }
 
-initApp();
+// Global function agar bisa dipanggil dari HTML
+window.tambahProduk = tambahKeKeranjang;
+
+renderProduk();
