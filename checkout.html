@@ -1,6 +1,25 @@
-<form id="form-checkout">
-    <input type="text" id="nama" placeholder="Nama Lengkap" required>
-    <input type="text" id="no_hp" placeholder="Nomor WhatsApp" required>
-    <textarea id="alamat" placeholder="Alamat Lengkap" required></textarea>
-    <button type="submit">Konfirmasi Pesanan</button>
-</form>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Duta Terang</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main style="max-width: 500px; margin: 20px auto; padding: 20px;">
+        <h2>Checkout Pesanan</h2>
+        <form id="form-checkout">
+            <input type="text" id="nama" placeholder="Nama Lengkap" required style="width: 100%; margin-bottom: 10px; padding: 10px;">
+            <input type="text" id="no_hp" placeholder="Nomor WhatsApp" required style="width: 100%; margin-bottom: 10px; padding: 10px;">
+            <textarea id="alamat" placeholder="Alamat Lengkap" required style="width: 100%; margin-bottom: 10px; padding: 10px;"></textarea>
+            
+            <button type="submit" style="width: 100%; padding: 10px; background: #e44d26; color: white; border: none; cursor: pointer;">
+                Konfirmasi Pesanan
+            </button>
+        </form>
+    </main>
+
+    <script type="module" src="js/checkout.js"></script>
+</body>
+</html>
