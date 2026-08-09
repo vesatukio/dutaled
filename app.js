@@ -549,32 +549,21 @@ Terima kasih.`;
 // WHATSAPP
 // ===============================
 
-function bukaWhatsApp(pesan) {
+function chatWhatsApp() {
+
+  const nomor = "6283157925577";
+
+  const pesan =
+    "Halo Duta Terang LED, saya ingin bertanya tentang produk.";
 
   const url =
     "https://wa.me/" +
-    WHATSAPP_NUMBER +
+    nomor +
     "?text=" +
     encodeURIComponent(pesan);
 
-
-  window.open(
-    url,
-    "_blank"
-  );
-
+  window.open(url, "_blank");
 }
-
-
-function chatWhatsApp() {
-
-  bukaWhatsApp(
-    "Halo Duta Terang LED, saya ingin bertanya tentang produk."
-  );
-
-}
-
-
 // ===============================
 // SHARE WHATSAPP
 // ===============================
