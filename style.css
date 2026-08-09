@@ -122,70 +122,51 @@ a {
 ===================================================== */
 
 .hero {
-  background: linear-gradient(
-    135deg,
-    #111,
-    #252525
-  );
-
+  background: linear-gradient(135deg, #111, #252525);
   color: #fff;
-
-  padding: 24px 16px 26px;
-
+  padding: 18px 12px 20px;
   overflow: hidden;
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 430px;
   margin: auto;
 }
 
 .hero-label {
   display: inline-block;
-
-  margin-bottom: 7px;
-
-  padding: 4px 8px;
-
-  border-radius: 15px;
-
+  margin-bottom: 5px;
+  padding: 3px 7px;
+  border-radius: 12px;
   background: rgba(255,255,255,.1);
-
   color: #ffd54a;
-
-  font-size: 9px;
-
+  font-size: 8px;
   font-weight: 800;
 }
 
 .hero h2 {
-  font-size: 25px;
-
+  font-size: 21px;
   line-height: 1.15;
-
-  margin-bottom: 6px;
+  margin: 0 0 5px;
 }
 
 .hero p {
   color: #ccc;
-
-  font-size: 12px;
-
-  margin-bottom: 13px;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  max-width: 340px;
 }
 
 .hero-buttons {
   display: flex;
-
-  gap: 7px;
+  gap: 6px;
 }
 
 .button {
-  padding: 9px 13px;
-
-  border-radius: 8px;
-
-  font-size: 12px;
+  padding: 7px 11px;
+  border-radius: 7px;
+  font-size: 11px;
 }
 
 .button-white {
