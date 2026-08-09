@@ -9,7 +9,98 @@
 ===================================================== */
 
 const API_URL =
-  "MASUKKAN_URL_APPS_SCRIPT_ANDA";
+  "function doGet() {
+
+  try {
+
+    const ss =
+      SpreadsheetApp.getActiveSpreadsheet();
+
+    const sheet =
+      ss.getSheetByName("PRODUK");
+
+    if (!sheet) {
+
+      return ContentService
+        .createTextOutput(
+          JSON.stringify({
+            error: true,
+            message: "Sheet PRODUK tidak ditemukan"
+          })
+        )
+        .setMimeType(
+          ContentService.MimeType.JSON
+        );
+
+    }
+
+    const data =
+      sheet.getDataRange().getValues();
+
+    const hasil = [];
+
+    for (let i = 1; i < data.length; i++) {
+
+      if (!data[i][1]) continue;
+
+      const harga =
+        Number(data[i][2]) || 0;
+
+      const diskon =
+        Number(data[i][3]) || 0;
+
+      const hargaJual =
+        Math.round(
+          harga -
+          (harga * diskon / 100)
+        );
+
+      hasil.push({
+
+        id: data[i][0],
+
+        nama: data[i][1],
+
+        harga: harga,
+
+        diskon: diskon,
+
+        hargaJual: hargaJual,
+
+        gambar: data[i][4],
+
+        kategori: data[i][5],
+
+        stok: data[i][6]
+
+      });
+
+    }
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify(hasil)
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+  } catch (error) {
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify({
+          error: true,
+          message: error.message
+        })
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+  }
+
+}";
 
 
 /* =====================================================
@@ -21,7 +112,7 @@ const API_URL =
 ===================================================== */
 
 const WHATSAPP_NUMBER =
-  "628xxxxxxxxxx";
+  "6283157925577";
 
 
 /* =====================================================
@@ -86,7 +177,98 @@ async function loadProducts() {
     if (
       !API_URL ||
       API_URL ===
-      "MASUKKAN_URL_APPS_SCRIPT_ANDA"
+      "function doGet() {
+
+  try {
+
+    const ss =
+      SpreadsheetApp.getActiveSpreadsheet();
+
+    const sheet =
+      ss.getSheetByName("PRODUK");
+
+    if (!sheet) {
+
+      return ContentService
+        .createTextOutput(
+          JSON.stringify({
+            error: true,
+            message: "Sheet PRODUK tidak ditemukan"
+          })
+        )
+        .setMimeType(
+          ContentService.MimeType.JSON
+        );
+
+    }
+
+    const data =
+      sheet.getDataRange().getValues();
+
+    const hasil = [];
+
+    for (let i = 1; i < data.length; i++) {
+
+      if (!data[i][1]) continue;
+
+      const harga =
+        Number(data[i][2]) || 0;
+
+      const diskon =
+        Number(data[i][3]) || 0;
+
+      const hargaJual =
+        Math.round(
+          harga -
+          (harga * diskon / 100)
+        );
+
+      hasil.push({
+
+        id: data[i][0],
+
+        nama: data[i][1],
+
+        harga: harga,
+
+        diskon: diskon,
+
+        hargaJual: hargaJual,
+
+        gambar: data[i][4],
+
+        kategori: data[i][5],
+
+        stok: data[i][6]
+
+      });
+
+    }
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify(hasil)
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+  } catch (error) {
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify({
+          error: true,
+          message: error.message
+        })
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+  }
+
+}"
     ) {
 
       throw new Error(
