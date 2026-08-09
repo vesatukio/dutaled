@@ -126,18 +126,21 @@ a {
 
 
 /* =====================================================
-   HERO BAGI TIGA
+   HERO 3 KOLOM
 ===================================================== */
 /* =====================================================
    HERO 3 KOLOM
+   KIRI = TEKS
+   TENGAH = PROMO 1
+   KANAN = PROMO 2
 ===================================================== */
 
 .hero {
-  width: calc(100% - 20px);
+  width: calc(100% - 16px);
   max-width: 600px;
 
   margin: 8px auto;
-  padding: 10px;
+  padding: 7px;
 
   display: grid;
 
@@ -146,9 +149,9 @@ a {
     1fr
     1fr;
 
-  align-items: center;
+  align-items: stretch;
 
-  gap: 7px;
+  gap: 5px;
 
   box-sizing: border-box;
 
@@ -176,17 +179,34 @@ a {
 
 .hero-content {
   min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 3px;
 }
+
+
+/* =====================================================
+   LABEL
+===================================================== */
 
 .hero-label {
   display: inline-block;
 
+  width: fit-content;
+
   margin-bottom: 3px;
+
   padding: 2px 5px;
 
   border-radius: 8px;
 
-  background: rgba(255,255,255,.18);
+  background:
+    rgba(255,255,255,.18);
 
   color: #fff;
 
@@ -194,6 +214,11 @@ a {
 
   font-weight: 800;
 }
+
+
+/* =====================================================
+   JUDUL
+===================================================== */
 
 .hero h2 {
   margin: 0 0 3px;
@@ -205,10 +230,16 @@ a {
   font-weight: 800;
 }
 
+
+/* =====================================================
+   DESKRIPSI
+===================================================== */
+
 .hero p {
   margin: 0 0 6px;
 
-  color: rgba(255,255,255,.9);
+  color:
+    rgba(255,255,255,.9);
 
   font-size: 7px;
 
@@ -260,13 +291,15 @@ a {
 
 
 /* =====================================================
-   GAMBAR PROMO TENGAH & KANAN
+   PROMO TENGAH & KANAN
 ===================================================== */
 
 .hero-promo {
   width: 100%;
 
-  aspect-ratio: 1 / 1;
+  height: 100%;
+
+  min-height: 100%;
 
   overflow: hidden;
 
@@ -278,13 +311,70 @@ a {
     0 2px 7px rgba(0,0,0,.15);
 }
 
+
+/* =====================================================
+   GAMBAR PROMO
+===================================================== */
+
 .hero-promo img {
   width: 100%;
+
   height: 100%;
 
   display: block;
 
   object-fit: cover;
+}
+
+
+/* =====================================================
+   HP KECIL
+===================================================== */
+
+@media (max-width: 360px) {
+
+  .hero {
+    width: calc(100% - 12px);
+
+    padding: 5px;
+
+    gap: 4px;
+  }
+
+  .hero-content {
+    padding: 2px;
+  }
+
+  .hero-label {
+    font-size: 5px;
+
+    padding: 2px 4px;
+  }
+
+  .hero h2 {
+    font-size: 12px;
+  }
+
+  .hero p {
+    font-size: 6px;
+
+    margin-bottom: 4px;
+  }
+
+  .hero-buttons {
+    gap: 3px;
+  }
+
+  .button {
+    padding: 4px 3px;
+
+    font-size: 6px;
+  }
+
+  .hero-promo {
+    border-radius: 5px;
+  }
+
 }
 
 /* =====================================================
