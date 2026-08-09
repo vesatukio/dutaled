@@ -557,7 +557,29 @@
 ================================================== -->
 
 <script src="app.js"></script>
+<!-- ZOOM GAMBAR PRODUK -->
 
+<div
+  id="imageZoom"
+  class="image-zoom"
+  onclick="closeImageZoom()"
+>
+
+  <button
+    class="image-zoom-close"
+    onclick="event.stopPropagation(); closeImageZoom()"
+  >
+    ×
+  </button>
+
+  <img
+    id="zoomImage"
+    src=""
+    alt="Gambar Produk"
+    onclick="event.stopPropagation(); closeImageZoom()"
+  >
+
+</div>
 </body>
 
 </html>
