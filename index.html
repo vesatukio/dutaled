@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Duta Terang LED | Lampu LED & Sparepart Murah</title>
+  <title>Duta Terang LED | Lampu LED & Sparepart</title>
 
   <meta name="description"
-    content="Lampu LED, modul LED dan sparepart dengan harga terjangkau. Eceran dan grosir. Pesan mudah melalui WhatsApp.">
+    content="Lampu LED, modul LED dan sparepart dengan harga terjangkau. Eceran dan grosir. Pesan melalui WhatsApp.">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Duta Terang LED | Lampu LED & Sparepart Murah">
+  <meta property="og:title"
+    content="Duta Terang LED | Lampu LED & Sparepart">
+
   <meta property="og:description"
-    content="Lampu LED, modul LED dan sparepart dengan harga terjangkau. Eceran dan grosir.">
+    content="Lampu LED, modul LED dan sparepart dengan harga terjangkau.">
+
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://via.placeholder.com/1200x630">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -22,258 +23,240 @@
 <body>
 
 <header class="header">
-  <div>
-    <h1>Duta Terang LED</h1>
-    <p>Lampu LED & Sparepart</p>
+
+  <div class="brand">
+    <div class="logo">💡</div>
+
+    <div>
+      <h1>Duta Terang LED</h1>
+      <p>Lampu LED & Sparepart</p>
+    </div>
   </div>
 
-  <a href="#produk" class="menu-btn">Produk</a>
+  <a href="#produk" class="btn-produk">
+    Produk
+  </a>
+
 </header>
+
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <span class="label">
+      TOKO LAMPU & SPAREPART
+    </span>
+
+    <h2>
+      Lampu LED<br>
+      & Sparepart
+    </h2>
+
+    <p>
+      Harga murah • Eceran & Grosir
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#produk" class="btn btn-light">
+        🛒 Lihat Produk
+      </a>
+
+      <button class="btn btn-wa" onclick="chatWhatsApp()">
+        💬 WhatsApp
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="search-area">
+
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="🔍 Cari produk..."
+    autocomplete="off">
+
+</section>
+
+
+<section class="categories">
+
+  <button class="category active" data-category="Semua">
+    Semua
+  </button>
+
+  <div id="categoryList"></div>
+
+</section>
 
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
+<section id="produk" class="products-section">
 
-      <span class="badge">TOKO LAMPU & SPAREPART</span>
-
-      <h2>LAMPU LED<br>& SPAREPART</h2>
-
-      <p>Harga murah • Eceran & Grosir</p>
-
-      <div class="hero-buttons">
-        <a href="#produk" class="btn primary">
-          🛒 Lihat Produk
-        </a>
-
-        <a href="#" class="btn whatsapp"
-           onclick="chatWhatsApp(); return false;">
-          💬 Chat WhatsApp
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- PRODUK -->
-  <section id="produk" class="section">
-
-    <div class="section-title">
-      <h2>Produk Unggulan</h2>
-      <p>Pilihan lampu & sparepart</p>
-    </div>
-
-    <div class="products">
-
-      <div class="product">
-        <img src="https://down-id.img.susercontent.com/file/id-11134207-81ztn-mqopqhkftt6o02.webp"
-             alt="Modul LED 5W">
-        <h3>Modul LED 5W</h3>
-        <strong>Rp3.000</strong>
-        <button onclick="pesan('Modul LED 5W')">
-          Pesan
-        </button>
-      </div>
-
-
-      <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Modul+LED+7W"
-             alt="Modul LED 7W">
-        <h3>Modul LED 7W</h3>
-        <strong>Rp4.000</strong>
-        <button onclick="pesan('Modul LED 7W')">
-          Pesan
-        </button>
-      </div>
-
-
-      <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Modul+LED+9W"
-             alt="Modul LED 9W">
-        <h3>Modul LED 9W</h3>
-        <strong>Rp5.000</strong>
-        <button onclick="pesan('Modul LED 9W')">
-          Pesan
-        </button>
-      </div>
-
-
-      <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Modul+LED+12W"
-             alt="Modul LED 12W">
-        <h3>Modul LED 12W</h3>
-        <strong>Rp6.000</strong>
-        <button onclick="pesan('Modul LED 12W')">
-          Pesan
-        </button>
-      </div>
-
-
-      <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Modul+LED+15W"
-             alt="Modul LED 15W">
-        <h3>Modul LED 15W</h3>
-        <strong>Rp8.000</strong>
-        <button onclick="pesan('Modul LED 15W')">
-          Pesan
-        </button>
-      </div>
-
-
-      <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Modul+LED+20W"
-             alt="Modul LED 20W">
-        <h3>Modul LED 20W</h3>
-        <strong>Rp10.000</strong>
-        <button onclick="pesan('Modul LED 20W')">
-          Pesan
-        </button>
-      </div>
-
-
-      <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Modul+LED+30W"
-             alt="Modul LED 30W">
-        <h3>Modul LED 30W</h3>
-        <strong>Rp14.000</strong>
-        <button onclick="pesan('Modul LED 30W')">
-          Pesan
-        </button>
-      </div>
-
-
-      <div class="product">
-        <img src="https://via.placeholder.com/400x300?text=Modul+LED+50W"
-             alt="Modul LED 50W">
-        <h3>Modul LED 50W</h3>
-        <strong>Rp19.000</strong>
-        <button onclick="pesan('Modul LED 50W')">
-          Pesan
-        </button>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PROMO -->
-  <section class="promo">
+  <div class="section-title">
 
     <div>
-      <span>🔥 PROMO</span>
-      <h2>Harga Grosir Lebih Hemat</h2>
-      <p>Cocok untuk toko listrik, warung dan teknisi.</p>
+      <h2>Produk</h2>
+      <p id="jumlahProduk">Memuat produk...</p>
     </div>
 
-    <a href="#" onclick="chatWhatsApp(); return false;">
-      Tanya Harga
+  </div>
+
+
+  <div id="loading" class="loading">
+
+    <div class="spinner"></div>
+
+    <p>Memuat katalog...</p>
+
+  </div>
+
+
+  <div id="productList" class="products"></div>
+
+
+  <div id="empty" class="empty hidden">
+
+    <div>🔎</div>
+
+    <h3>Produk tidak ditemukan</h3>
+
+    <p>Coba gunakan kata pencarian lain.</p>
+
+  </div>
+
+</section>
+
+
+<section class="promo">
+
+  <div>
+
+    <span>🔥 PROMO</span>
+
+    <h2>Harga Grosir Lebih Hemat</h2>
+
+    <p>
+      Cocok untuk toko listrik, warung dan teknisi.
+    </p>
+
+  </div>
+
+  <button onclick="chatWhatsApp()">
+    Tanya Harga
+  </button>
+
+</section>
+
+
+<section class="advantages">
+
+  <h2>Kenapa Duta Terang LED?</h2>
+
+  <div class="advantage-grid">
+
+    <div>
+      <span>💰</span>
+      <h3>Harga Terjangkau</h3>
+      <p>Harga bersaing.</p>
+    </div>
+
+    <div>
+      <span>📦</span>
+      <h3>Eceran & Grosir</h3>
+      <p>Beli sedikit atau banyak.</p>
+    </div>
+
+    <div>
+      <span>💡</span>
+      <h3>Sparepart</h3>
+      <p>Berbagai kebutuhan LED.</p>
+    </div>
+
+    <div>
+      <span>💬</span>
+      <h3>Konsultasi</h3>
+      <p>Tanya melalui WhatsApp.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="share">
+
+  <h2>Bagikan Toko</h2>
+
+  <div class="share-buttons">
+
+    <button onclick="shareWhatsApp()">
+      WhatsApp
+    </button>
+
+    <button onclick="shareFacebook()">
+      Facebook
+    </button>
+
+    <button onclick="copyLink()">
+      Salin Link
+    </button>
+
+  </div>
+
+</section>
+
+
+<section class="contact">
+
+  <h2>Duta Terang LED</h2>
+
+  <p>
+    📍 Clapar, Subah, Batang, Jawa Tengah
+  </p>
+
+  <div class="contact-links">
+
+    <button onclick="chatWhatsApp()">
+      💬 WhatsApp
+    </button>
+
+    <a
+      href="https://facebook.com/"
+      target="_blank">
+      Facebook
     </a>
 
-  </section>
+    <a
+      href="https://www.tiktok.com/"
+      target="_blank">
+      TikTok
+    </a>
 
+    <a
+      href="https://maps.google.com/?q=Clapar+Subah+Batang"
+      target="_blank">
+      📍 Lokasi
+    </a>
 
-  <!-- KEUNGGULAN -->
-  <section class="section">
+  </div>
 
-    <div class="section-title">
-      <h2>Kenapa Duta Terang LED?</h2>
-    </div>
-
-    <div class="advantages">
-
-      <div>
-        <span>💰</span>
-        <h3>Harga Terjangkau</h3>
-        <p>Harga bersaing untuk eceran maupun grosir.</p>
-      </div>
-
-      <div>
-        <span>📦</span>
-        <h3>Eceran & Grosir</h3>
-        <p>Beli sedikit maupun dalam jumlah banyak.</p>
-      </div>
-
-      <div>
-        <span>💡</span>
-        <h3>Sparepart Lengkap</h3>
-        <p>Berbagai kebutuhan lampu dan sparepart LED.</p>
-      </div>
-
-      <div>
-        <span>💬</span>
-        <h3>Bisa Konsultasi</h3>
-        <p>Tanyakan produk melalui WhatsApp.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- SHARE -->
-  <section class="share">
-
-    <h2>Bagikan Toko Kami</h2>
-
-    <div class="share-buttons">
-
-      <button onclick="shareWhatsApp()">
-        WhatsApp
-      </button>
-
-      <button onclick="shareFacebook()">
-        Facebook
-      </button>
-
-      <button onclick="copyLink()">
-        Salin Link
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- KONTAK -->
-  <section class="contact">
-
-    <h2>Duta Terang LED</h2>
-
-    <p>📍 Clapar, Subah, Batang, Jawa Tengah</p>
-
-    <div class="contact-buttons">
-
-      <a href="#" onclick="chatWhatsApp(); return false;">
-        💬 WhatsApp
-      </a>
-
-      <a href="https://facebook.com/" target="_blank">
-        Facebook
-      </a>
-
-      <a href="https://tiktok.com/" target="_blank">
-        TikTok
-      </a>
-
-      <a href="https://maps.google.com/?q=Clapar+Subah+Batang"
-         target="_blank">
-        📍 Lokasi
-      </a>
-
-    </div>
-
-  </section>
+</section>
 
 </main>
 
 
-<!-- FLOATING WHATSAPP -->
-<a href="#" class="floating-wa"
-   onclick="chatWhatsApp(); return false;">
+<a
+  class="floating-wa"
+  href="#"
+  onclick="chatWhatsApp(); return false;">
   💬
 </a>
 
@@ -286,93 +269,14 @@
 
   <p>Clapar, Subah, Batang, Jawa Tengah</p>
 
-  <small>© 2026 Duta Terang LED</small>
+  <small>
+    © 2026 Duta Terang LED
+  </small>
 
 </footer>
 
 
-<script>
-
-  /*
-  ===================================
-  GANTI NOMOR WHATSAPP DI SINI
-  ===================================
-  */
-
-  const WHATSAPP_NUMBER = "6283157925577";
-
-
-  function bukaWA(pesan) {
-
-    const url =
-      "https://wa.me/" +
-      WHATSAPP_NUMBER +
-      "?text=" +
-      encodeURIComponent(pesan);
-
-    window.open(url, "_blank");
-
-  }
-
-
-  function pesan(namaProduk) {
-
-    const teks =
-      "Halo Duta Terang LED,%0A%0A" +
-      "Saya ingin pesan: " +
-      namaProduk;
-
-    bukaWA(teks);
-
-  }
-
-
-  function chatWhatsApp() {
-
-    bukaWA(
-      "Halo Duta Terang LED, saya ingin bertanya tentang produk."
-    );
-
-  }
-
-
-  function shareWhatsApp() {
-
-    const url = window.location.href;
-
-    const teks =
-      "Lihat produk Duta Terang LED:%0A" + url;
-
-    window.open(
-      "https://wa.me/?text=" + encodeURIComponent(teks),
-      "_blank"
-    );
-
-  }
-
-
-  function shareFacebook() {
-
-    const url = window.location.href;
-
-    window.open(
-      "https://www.facebook.com/sharer/sharer.php?u=" +
-      encodeURIComponent(url),
-      "_blank"
-    );
-
-  }
-
-
-  function copyLink() {
-
-    navigator.clipboard.writeText(window.location.href);
-
-    alert("Link berhasil disalin!");
-
-  }
-
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
