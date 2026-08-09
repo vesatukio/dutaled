@@ -122,17 +122,18 @@ a {
 ===================================================== */
 
 .hero {
+  margin: 10px 12px;
+  border-radius: 12px;
   background: linear-gradient(135deg, #111, #252525);
   color: #fff;
-  padding: 18px 12px 20px;
+  padding: 18px 14px;
   overflow: hidden;
 }
 
 .hero-content {
-  max-width: 430px;
+  max-width: 400px;
   margin: auto;
 }
-
 .hero-label {
   display: inline-block;
   margin-bottom: 5px;
@@ -145,7 +146,7 @@ a {
 }
 
 .hero h2 {
-  font-size: 21px;
+  font-size: 18px;
   line-height: 1.15;
   margin: 0 0 5px;
 }
