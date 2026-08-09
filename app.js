@@ -12,7 +12,7 @@ const API_URL =
 
 // GANTI dengan nomor WhatsApp toko
 // Contoh: 628123456789
-const WHATSAPP_NUMBER = "628xxxxxxxxxx";
+const WHATSAPP_NUMBER = "6283157925577";
 
 
 // ===============================
