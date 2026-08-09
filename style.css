@@ -122,12 +122,12 @@ a {
 ===================================================== */
 
 .hero {
-  margin: 10px 12px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #111, #252525);
-  color: #fff;
-  padding: 18px 14px;
-  overflow: hidden;
+  width: calc(100% - 32px);
+  max-width: 400px;
+  margin: 8px auto;
+
+  padding: 12px;
+  border-radius: 9px;
 }
 
 .hero-content {
