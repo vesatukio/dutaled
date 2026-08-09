@@ -3,6 +3,10 @@
    style.css
 ===================================================== */
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,9 +24,7 @@ body {
     sans-serif;
 
   background: #f5f5f5;
-
   color: #222;
-
   line-height: 1.5;
 }
 
@@ -56,40 +58,44 @@ a {
   align-items: center;
   justify-content: space-between;
 
-  padding: 12px 16px;
+  padding: 10px 12px;
 
-  background: #ffffff;
+  background: #fff;
 
   border-bottom: 1px solid #eee;
 
   box-shadow:
-    0 2px 10px rgba(0,0,0,.05);
+    0 2px 10px rgba(0, 0, 0, .05);
 }
 
 .brand {
   display: flex;
   align-items: center;
 
-  gap: 10px;
+  gap: 8px;
+
+  min-width: 0;
 }
 
 .brand-icon {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   background: #fff3cd;
 
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .brand h1 {
-  font-size: 17px;
+  font-size: 16px;
 
   line-height: 1.2;
 
@@ -97,95 +103,214 @@ a {
 }
 
 .brand p {
-  font-size: 12px;
+  font-size: 10px;
 
   color: #777;
 }
 
 .header-button {
-  padding: 8px 14px;
+  flex-shrink: 0;
 
-  border-radius: 20px;
+  padding: 7px 11px;
+
+  border-radius: 18px;
 
   background: #111;
 
   color: #fff;
 
-  font-size: 13px;
+  font-size: 11px;
 
   font-weight: 700;
 }
 
 
 /* =====================================================
-   HERO
+   HERO COMPACT
 ===================================================== */
 
 .hero {
-  width: calc(100% - 32px);
-  max-width: 400px;
+  width: calc(100% - 24px);
+
+  max-width: 430px;
+
+  min-height: 86px;
+
   margin: 8px auto;
 
-  padding: 12px;
-  border-radius: 9px;
+  padding: 10px 11px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff9800,
+      #ff5a00
+    );
+
+  color: #fff;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 3px 10px rgba(255, 102, 0, .18);
 }
 
 .hero-content {
-  max-width: 400px;
-  margin: auto;
+  flex: 1;
+
+  min-width: 0;
+
+  max-width: none;
+
+  margin: 0;
 }
+
 .hero-label {
   display: inline-block;
-  margin-bottom: 5px;
-  padding: 3px 7px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.1);
-  color: #ffd54a;
-  font-size: 8px;
+
+  margin-bottom: 3px;
+
+  padding: 2px 6px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, .18);
+
+  color: #fff;
+
+  font-size: 7px;
+
   font-weight: 800;
 }
 
 .hero h2 {
-  font-size: 17px;
-  line-height: 1.2;
-  margin-bottom: 4px;
+  margin: 0 0 3px;
+
+  font-size: 16px;
+
+  line-height: 1.15;
+
+  font-weight: 800;
 }
 
 .hero p {
-  color: #ccc;
-  font-size: 11px;
-  line-height: 1.4;
-  margin: 0 0 10px;
-  max-width: 340px;
+  max-width: 230px;
+
+  margin: 0 0 7px;
+
+  color: rgba(255, 255, 255, .9);
+
+  font-size: 9px;
+
+  line-height: 1.25;
 }
 
 .hero-buttons {
   display: flex;
-  gap: 6px;
+
+  gap: 5px;
 }
 
 .button {
-  padding: 7px 11px;
-  border-radius: 7px;
-  font-size: 11px;
+  padding: 5px 8px;
+
+  border: 0;
+
+  border-radius: 6px;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  cursor: pointer;
 }
 
 .button-white {
   background: #fff;
-  color: #111;
+
+  color: #f45d00;
 }
 
 .button-green {
   background: #20c76b;
+
   color: #fff;
 }
+
+
+/* =====================================================
+   PROMO KANAN HERO
+===================================================== */
+
+.hero-promo {
+  flex: 0 0 68px;
+
+  width: 68px;
+
+  height: 64px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    rgba(255, 255, 255, .18);
+
+  border:
+    1px solid rgba(255, 255, 255, .3);
+
+  border-radius: 8px;
+}
+
+.hero-promo strong {
+  font-size: 19px;
+
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+.hero-promo span {
+  margin-top: 3px;
+
+  font-size: 7px;
+
+  font-weight: 800;
+}
+
+.hero-promo small {
+  margin-top: 2px;
+
+  font-size: 6px;
+
+  opacity: .9;
+}
+
 
 /* =====================================================
    SEARCH
 ===================================================== */
 
 .search-section {
-  padding: 14px 16px 8px;
+  padding: 10px 12px 7px;
 
   background: #fff;
 }
@@ -193,23 +318,24 @@ a {
 #searchInput {
   width: 100%;
 
-  height: 46px;
+  height: 42px;
 
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
-  padding: 0 15px;
+  padding: 0 13px;
 
   outline: none;
 
   background: #f7f7f7;
 
-  font-size: 14px;
+  font-size: 13px;
 }
 
 #searchInput:focus {
-  border-color: #111;
+  border-color: #ff7a00;
 
   background: #fff;
 }
@@ -222,7 +348,7 @@ a {
 .category-section {
   background: #fff;
 
-  padding: 8px 16px 14px;
+  padding: 7px 12px 11px;
 
   overflow: hidden;
 }
@@ -230,7 +356,7 @@ a {
 .category-scroll {
   display: flex;
 
-  gap: 8px;
+  gap: 7px;
 
   overflow-x: auto;
 
@@ -244,23 +370,24 @@ a {
 .category-list {
   display: flex;
 
-  gap: 8px;
+  gap: 7px;
 }
 
 .category {
   flex-shrink: 0;
 
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
   background: #fff;
 
   color: #555;
 
-  border-radius: 20px;
+  border-radius: 18px;
 
-  padding: 7px 14px;
+  padding: 6px 12px;
 
-  font-size: 12px;
+  font-size: 11px;
 
   cursor: pointer;
 
@@ -268,9 +395,9 @@ a {
 }
 
 .category.active {
-  background: #111;
+  background: #ff6a00;
 
-  border-color: #111;
+  border-color: #ff6a00;
 
   color: #fff;
 }
@@ -285,7 +412,7 @@ a {
 
   margin: auto;
 
-  padding: 22px 12px;
+  padding: 16px 10px;
 }
 
 .section-header {
@@ -295,17 +422,17 @@ a {
 
   justify-content: space-between;
 
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .section-header h2 {
-  font-size: 21px;
+  font-size: 18px;
 }
 
 .section-header p {
   color: #888;
 
-  font-size: 12px;
+  font-size: 10px;
 }
 
 
@@ -319,7 +446,7 @@ a {
   grid-template-columns:
     repeat(2, minmax(0, 1fr));
 
-  gap: 10px;
+  gap: 8px;
 }
 
 
@@ -334,12 +461,13 @@ a {
 
   background: #fff;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
-  border: 1px solid #eee;
+  border:
+    1px solid #eee;
 
   box-shadow:
-    0 2px 8px rgba(0,0,0,.04);
+    0 2px 7px rgba(0, 0, 0, .04);
 }
 
 .product-image {
@@ -382,7 +510,7 @@ a {
       #eaeaea
     );
 
-  font-size: 42px;
+  font-size: 38px;
 
   color: #999;
 }
@@ -395,13 +523,13 @@ a {
 .discount-badge {
   position: absolute;
 
-  top: 8px;
+  top: 6px;
 
-  right: 8px;
+  right: 6px;
 
   z-index: 3;
 
-  padding: 4px 7px;
+  padding: 3px 6px;
 
   border-radius: 5px;
 
@@ -409,7 +537,7 @@ a {
 
   color: #fff;
 
-  font-size: 11px;
+  font-size: 9px;
 
   font-weight: 800;
 }
@@ -420,21 +548,21 @@ a {
 ===================================================== */
 
 .product-body {
-  padding: 10px;
+  padding: 8px;
 }
 
 .product-name {
-  min-height: 38px;
+  min-height: 34px;
 
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 
   color: #333;
 
-  font-size: 13px;
+  font-size: 12px;
 
   font-weight: 600;
 
-  line-height: 1.4;
+  line-height: 1.35;
 
   display: -webkit-box;
 
@@ -448,7 +576,7 @@ a {
 .old-price {
   color: #999;
 
-  font-size: 11px;
+  font-size: 10px;
 
   text-decoration: line-through;
 }
@@ -456,7 +584,7 @@ a {
 .sale-price {
   color: #e53935;
 
-  font-size: 18px;
+  font-size: 16px;
 
   font-weight: 800;
 
@@ -470,15 +598,15 @@ a {
 
   justify-content: space-between;
 
-  gap: 5px;
+  gap: 4px;
 
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 .stock {
   color: #777;
 
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .empty-stock {
@@ -486,7 +614,7 @@ a {
 }
 
 .category-name {
-  max-width: 80px;
+  max-width: 75px;
 
   overflow: hidden;
 
@@ -496,7 +624,7 @@ a {
 
   color: #999;
 
-  font-size: 10px;
+  font-size: 9px;
 }
 
 
@@ -507,19 +635,19 @@ a {
 .order-button {
   width: 100%;
 
-  margin-top: 9px;
+  margin-top: 7px;
 
   border: 0;
 
-  border-radius: 8px;
+  border-radius: 7px;
 
-  padding: 9px 8px;
+  padding: 8px;
 
   background: #20c76b;
 
   color: #fff;
 
-  font-size: 12px;
+  font-size: 11px;
 
   font-weight: 700;
 
@@ -554,13 +682,14 @@ a {
 }
 
 .spinner {
-  width: 32px;
+  width: 30px;
 
-  height: 32px;
+  height: 30px;
 
-  border: 3px solid #ddd;
+  border:
+    3px solid #ddd;
 
-  border-top-color: #111;
+  border-top-color: #ff6a00;
 
   border-radius: 50%;
 
@@ -672,11 +801,11 @@ a {
 
 
 /* =====================================================
-   PROMO
+   PROMO SECTION
 ===================================================== */
 
 .promo-section {
-  padding: 10px 12px 25px;
+  padding: 8px 10px 20px;
 }
 
 .promo-box {
@@ -684,9 +813,9 @@ a {
 
   margin: auto;
 
-  padding: 20px;
+  padding: 15px;
 
-  border-radius: 15px;
+  border-radius: 12px;
 
   background:
     linear-gradient(
@@ -695,7 +824,8 @@ a {
       #fff
     );
 
-  border: 1px solid #f1df9b;
+  border:
+    1px solid #f1df9b;
 
   display: flex;
 
@@ -703,27 +833,27 @@ a {
 
   justify-content: space-between;
 
-  gap: 15px;
+  gap: 12px;
 }
 
 .promo-label {
   color: #d68b00;
 
-  font-size: 11px;
+  font-size: 10px;
 
   font-weight: 800;
 }
 
 .promo-box h2 {
-  font-size: 18px;
+  font-size: 16px;
 
-  margin: 3px 0;
+  margin: 2px 0;
 }
 
 .promo-box p {
   color: #777;
 
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .promo-box button {
@@ -731,15 +861,15 @@ a {
 
   border: 0;
 
-  border-radius: 9px;
+  border-radius: 8px;
 
-  padding: 10px 13px;
+  padding: 8px 11px;
 
-  background: #111;
+  background: #ff6a00;
 
   color: #fff;
 
-  font-size: 12px;
+  font-size: 10px;
 
   font-weight: 700;
 
@@ -756,13 +886,13 @@ a {
 
   margin: auto;
 
-  padding: 20px 12px 30px;
+  padding: 16px 10px 25px;
 }
 
 .advantages-section > h2 {
-  font-size: 20px;
+  font-size: 18px;
 
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .advantages {
@@ -771,27 +901,28 @@ a {
   grid-template-columns:
     repeat(2, 1fr);
 
-  gap: 10px;
+  gap: 8px;
 }
 
 .advantage {
-  padding: 15px;
+  padding: 12px;
 
   background: #fff;
 
-  border-radius: 12px;
+  border-radius: 10px;
 
-  border: 1px solid #eee;
+  border:
+    1px solid #eee;
 }
 
 .advantage-icon {
-  font-size: 24px;
+  font-size: 22px;
 
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .advantage h3 {
-  font-size: 13px;
+  font-size: 12px;
 
   margin-bottom: 3px;
 }
@@ -799,7 +930,7 @@ a {
 .advantage p {
   color: #888;
 
-  font-size: 11px;
+  font-size: 10px;
 }
 
 
@@ -808,7 +939,7 @@ a {
 ===================================================== */
 
 .share-section {
-  padding: 25px 15px;
+  padding: 20px 12px;
 
   text-align: center;
 
@@ -816,7 +947,7 @@ a {
 }
 
 .share-section h2 {
-  font-size: 19px;
+  font-size: 17px;
 
   margin-bottom: 3px;
 }
@@ -824,9 +955,9 @@ a {
 .share-section p {
   color: #888;
 
-  font-size: 12px;
+  font-size: 11px;
 
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .share-buttons {
@@ -836,21 +967,22 @@ a {
 
   flex-wrap: wrap;
 
-  gap: 8px;
+  gap: 7px;
 }
 
 .share-buttons button {
-  border: 1px solid #ddd;
+  border:
+    1px solid #ddd;
 
   background: #fff;
 
-  border-radius: 9px;
+  border-radius: 8px;
 
-  padding: 9px 12px;
+  padding: 8px 10px;
 
   color: #333;
 
-  font-size: 12px;
+  font-size: 11px;
 
   cursor: pointer;
 }
@@ -861,7 +993,7 @@ a {
 ===================================================== */
 
 .contact-section {
-  padding: 25px 12px;
+  padding: 20px 10px;
 }
 
 .contact-box {
@@ -869,9 +1001,9 @@ a {
 
   margin: auto;
 
-  padding: 25px 18px;
+  padding: 20px 15px;
 
-  border-radius: 15px;
+  border-radius: 12px;
 
   background: #111;
 
@@ -881,13 +1013,13 @@ a {
 }
 
 .contact-box h2 {
-  font-size: 21px;
+  font-size: 18px;
 }
 
 .contact-box > p {
   color: #bbb;
 
-  font-size: 12px;
+  font-size: 11px;
 
   margin-top: 3px;
 }
@@ -899,24 +1031,25 @@ a {
 
   flex-wrap: wrap;
 
-  gap: 8px;
+  gap: 7px;
 
-  margin-top: 17px;
+  margin-top: 14px;
 }
 
 .contact-buttons button,
 .contact-buttons a {
-  border: 1px solid #444;
+  border:
+    1px solid #444;
 
   background: #222;
 
   color: #fff;
 
-  padding: 9px 12px;
+  padding: 8px 10px;
 
-  border-radius: 8px;
+  border-radius: 7px;
 
-  font-size: 11px;
+  font-size: 10px;
 
   cursor: pointer;
 }
@@ -929,15 +1062,15 @@ a {
 .floating-whatsapp {
   position: fixed;
 
-  right: 16px;
+  right: 14px;
 
-  bottom: 18px;
+  bottom: 16px;
 
   z-index: 200;
 
-  width: 52px;
+  width: 48px;
 
-  height: 52px;
+  height: 48px;
 
   display: flex;
 
@@ -951,10 +1084,10 @@ a {
 
   color: #fff;
 
-  font-size: 24px;
+  font-size: 22px;
 
   box-shadow:
-    0 5px 20px rgba(0,0,0,.2);
+    0 5px 20px rgba(0, 0, 0, .2);
 }
 
 
@@ -963,7 +1096,7 @@ a {
 ===================================================== */
 
 footer {
-  padding: 25px 15px 85px;
+  padding: 22px 12px 75px;
 
   background: #0b0b0b;
 
@@ -973,7 +1106,7 @@ footer {
 }
 
 .footer-name {
-  font-size: 17px;
+  font-size: 16px;
 
   font-weight: 700;
 }
@@ -981,17 +1114,17 @@ footer {
 footer p {
   color: #888;
 
-  font-size: 11px;
+  font-size: 10px;
 
   margin-top: 3px;
 }
 
 .footer-line {
-  width: 50px;
+  width: 45px;
 
   height: 1px;
 
-  margin: 15px auto;
+  margin: 13px auto;
 
   background: #333;
 }
@@ -999,7 +1132,7 @@ footer p {
 footer small {
   color: #666;
 
-  font-size: 10px;
+  font-size: 9px;
 }
 
 
@@ -1009,19 +1142,39 @@ footer small {
 
 @media (min-width: 600px) {
 
+  .top-header {
+    padding: 11px 18px;
+  }
+
   .products {
     grid-template-columns:
       repeat(3, 1fr);
 
-    gap: 14px;
+    gap: 12px;
   }
 
   .hero {
-    padding: 55px 25px;
+    max-width: 600px;
+
+    min-height: 100px;
+
+    padding: 14px 16px;
   }
 
   .hero h2 {
-    font-size: 42px;
+    font-size: 20px;
+  }
+
+  .hero p {
+    font-size: 10px;
+  }
+
+  .hero-promo {
+    flex-basis: 80px;
+
+    width: 80px;
+
+    height: 74px;
   }
 
 }
@@ -1034,32 +1187,100 @@ footer small {
 @media (min-width: 900px) {
 
   .top-header {
-    padding-left: calc(
-      (100% - 1000px) / 2
-    );
+    padding-left:
+      calc((100% - 1000px) / 2);
 
-    padding-right: calc(
-      (100% - 1000px) / 2
-    );
+    padding-right:
+      calc((100% - 1000px) / 2);
   }
 
   .products {
     grid-template-columns:
       repeat(4, 1fr);
-  }
 
-  .hero-content {
-    max-width: 1000px;
+    gap: 14px;
   }
 
   .hero {
-    padding-top: 70px;
+    max-width: 700px;
 
-    padding-bottom: 70px;
+    min-height: 105px;
+
+    padding: 15px 18px;
   }
 
   .hero h2 {
-    font-size: 48px;
+    font-size: 22px;
+  }
+
+  .hero-promo {
+    flex-basis: 90px;
+
+    width: 90px;
+
+    height: 78px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL PHONE
+===================================================== */
+
+@media (max-width: 360px) {
+
+  .hero {
+    width: calc(100% - 18px);
+
+    padding: 9px;
+
+    gap: 6px;
+  }
+
+  .hero h2 {
+    font-size: 14px;
+  }
+
+  .hero p {
+    font-size: 8px;
+
+    margin-bottom: 5px;
+  }
+
+  .hero-promo {
+    flex-basis: 60px;
+
+    width: 60px;
+
+    height: 58px;
+  }
+
+  .hero-promo strong {
+    font-size: 17px;
+  }
+
+  .hero-promo span {
+    font-size: 6px;
+  }
+
+  .hero-promo small {
+    font-size: 5px;
+  }
+
+  .button {
+    padding: 4px 7px;
+
+    font-size: 8px;
+  }
+
+  .products-section {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .products {
+    gap: 7px;
   }
 
 }
