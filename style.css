@@ -1356,3 +1356,80 @@ footer small {
   }
 
 }
+
+/* =====================================================
+   ZOOM GAMBAR PRODUK
+===================================================== */
+
+.product-image {
+  cursor: zoom-in;
+}
+
+.image-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  background: rgba(0, 0, 0, .88);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: .2s ease;
+}
+
+.image-zoom.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.image-zoom img {
+  max-width: 95vw;
+  max-height: 90vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+
+  border-radius: 8px;
+
+  transform: scale(.8);
+
+  transition: transform .2s ease;
+
+  cursor: zoom-out;
+}
+
+.image-zoom.show img {
+  transform: scale(1);
+}
+
+.image-zoom-close {
+  position: fixed;
+
+  top: 12px;
+  right: 12px;
+
+  width: 38px;
+  height: 38px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #fff;
+  color: #111;
+
+  font-size: 24px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  z-index: 10000;
+}
