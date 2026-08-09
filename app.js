@@ -704,3 +704,46 @@ if (semuaButton) {
 // ===============================
 
 loadProducts();
+// =====================================================
+// ZOOM GAMBAR PRODUK
+// =====================================================
+
+function openImageZoom(src, alt = "Gambar Produk") {
+
+  const zoom = document.getElementById("imageZoom");
+  const image = document.getElementById("zoomImage");
+
+  if (!zoom || !image) return;
+
+  image.src = src;
+  image.alt = alt;
+
+  zoom.classList.add("show");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeImageZoom() {
+
+  const zoom = document.getElementById("imageZoom");
+
+  if (!zoom) return;
+
+  zoom.classList.remove("show");
+
+  document.body.style.overflow = "";
+
+}
+
+
+// ESC untuk menutup
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+
+    closeImageZoom();
+
+  }
+
+});
