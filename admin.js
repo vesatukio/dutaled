@@ -46,11 +46,14 @@ function preview(){
  const v=data.variants[0]||{name:"Varian",cost:0,price:0,discount:0};
  const now=new Date(), start=data.promo.start?new Date(data.promo.start):null,end=data.promo.end?new Date(data.promo.end):null;
  const promoActive=data.promo.discount>0&&start&&end&&start<=now&&now<=end;
- let discount=data.retailMode==="none"?0:(data.retailMode==="percent"?num(v.discount):0);
+ const previewQty=1;
+ const tier=data.tiers.find(t=>previewQty>=num(t.min)&&previewQty<=num(t.max));
+ let discount=tier?num(tier.discount):(data.retailMode==="none"?0:(data.retailMode==="percent"?num(v.discount):0));
  if(promoActive) discount=Math.max(discount,num(data.promo.discount));
- const final=Math.round(num(v.price)*(1-Math.min(100,Math.max(0,discount))/100));
+ discount=Math.min(100,Math.max(0,discount));
+ const final=Math.round(num(v.price)*(1-discount/100));
  $("#previewName").textContent=data.productName+" "+v.name;
- $("#previewDetail").textContent=(promoActive?"Promo aktif · ":"Harga retail · ")+discount+"% diskon pada varian pertama";
+ $("#previewDetail").textContent=(promoActive?"Promo aktif · ":tier?"Diskon kuantitas (jumlah "+previewQty+") · ":"Harga retail · ")+discount+"% diskon pada varian pertama";
  $("#previewOriginal").textContent=money(v.price);$("#previewFinal").textContent=money(final);
  $("#previewProfit").textContent="Modal "+money(v.cost)+" · Laba kotor "+money(final-num(v.cost))+" per unit";
 }
