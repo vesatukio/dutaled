@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Admin DutaLED — Harga & Promo</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="index.html">✦ DUTA<span>LED</span> <small>ADMIN</small></a><a href="index.html">← Lihat katalog</a></header>
+  <main class="wrap">
+    <div class="intro"><div><p class="eyebrow">PANEL PENGELOLAAN</p><h1>Harga & promo</h1><p>Kelola contoh varian, diskon retail, dan diskon berdasarkan jumlah.</p></div><span class="prototype">MODE DEMO</span></div>
+    <div class="notice"><strong>Catatan:</strong> versi ini menyimpan perubahan hanya di browser ini. Pelanggan lain belum melihat perubahan. Untuk menerapkan harga secara langsung ke semua pengunjung, tahap berikutnya perlu database dan autentikasi admin.</div>
+    <section class="panel">
+      <div class="panel-head"><div><h2>Aturan harga</h2><p>Diskon retail berlaku untuk pembelian satuan. Diskon kuantitas menggantikan diskon retail, tidak ditumpuk.</p></div><button id="reset" class="btn secondary">Reset contoh</button></div>
+      <div class="fields">
+        <label>Nama produk<input id="productName" value="Lampu LED Aliano"></label>
+        <label>Aturan retail<select id="retailMode"><option value="none">Tanpa diskon</option><option value="percent">Diskon persentase</option><option value="fixed">Harga khusus</option></select></label>
+        <label>Diskon retail (%)<input id="retailDiscount" type="number" min="0" max="100" value="5"></label>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Varian</th><th>Modal (Rp)</th><th>Harga jual (Rp)</th><th>Diskon retail (%)</th><th>Stok</th><th></th></tr></thead><tbody id="variants"></tbody></table></div>
+      <button id="addVariant" class="btn secondary">+ Tambah varian</button>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><h2>Diskon berdasarkan jumlah</h2><p>Rentang kuantitas tidak boleh saling tumpang tindih.</p></div><button id="addTier" class="btn secondary">+ Tambah tingkat</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Jumlah minimum</th><th>Jumlah maksimum</th><th>Diskon (%)</th><th></th></tr></thead><tbody id="tiers"></tbody></table></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><div><h2>Promo harian</h2><p>Atur periode promo untuk simulasi harga jual.</p></div></div>
+      <div class="fields">
+        <label>Nama promo<input id="promoName" value="Promo Hari Ini" placeholder="Contoh: Promo Akhir Pekan"></label>
+        <label>Diskon promo (%)<input id="promoDiscount" type="number" min="0" max="100" value="0"></label>
+        <label>Mulai<input id="promoStart" type="datetime-local"></label>
+        <label>Berakhir<input id="promoEnd" type="datetime-local"></label>
+      </div>
+    </section>
+    <section class="panel preview">
+      <div><p class="eyebrow">SIMULASI HARGA</p><h2 id="previewName">Lampu LED Aliano 5W</h2><p id="previewDetail">Harga setelah diskon dihitung otomatis.</p></div>
+      <div class="preview-price"><span>Harga jual</span><strong id="previewOriginal">Rp6.000</strong><span>Harga pelanggan</span><strong id="previewFinal">Rp5.700</strong><small id="previewProfit">Modal & laba kotor hanya untuk admin.</small></div>
+    </section>
+    <div class="actions"><button id="save" class="btn primary">Simpan di browser ini</button><button id="export" class="btn secondary">Ekspor konfigurasi JSON</button><span id="status" role="status"></span></div>
+  </main>
+</body>
+</html>
