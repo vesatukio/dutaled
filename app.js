@@ -1,7 +1,6 @@
 /* DutaLED catalog: vanilla JS, no build step required. */
 (() => {
   "use strict";
-  const WHATSAPP_NUMBER = "6283157925577";
   const products = Array.isArray(window.DUTALED_PRODUCTS) ? window.DUTALED_PRODUCTS : [];
   const $ = selector => document.querySelector(selector);
   const rupiah = value => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(value||0);
@@ -62,13 +61,19 @@
   function add(id,delta=1){const p=getProduct(id);if(!p)return;const next=(Number(state.cart[id])||0)+delta;if(next<=0)delete state.cart[id];else state.cart[id]=Math.min(next,Math.max(1,Number(p.stock)||999));saveCart();renderCart();renderProducts();toast(delta>0?"Ditambahkan ke keranjang":"Jumlah diperbarui")}
   function openCart(){$("#cartDrawer").classList.add("open");$("#drawerBackdrop").classList.remove("hidden");$("#cartDrawer").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";$("#closeCart").focus()}
   function closeCart(){$("#cartDrawer").classList.remove("open");$("#drawerBackdrop").classList.add("hidden");$("#cartDrawer").setAttribute("aria-hidden","true");document.body.style.overflow=""}
-  function chatWhatsApp(message){window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message||"Halo Duta Terang LED, saya ingin bertanya tentang produk."),"_blank","noopener,noreferrer")}
+  async function copyOrderSummary(message){
+    try {
+      if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(message);toast("Ringkasan pesanan disalin.");return;}
+    } catch {}
+    const field=document.createElement("textarea");field.value=message;field.setAttribute("readonly","");field.style.position="fixed";field.style.opacity="0";document.body.appendChild(field);field.select();
+    const copied=document.execCommand("copy");field.remove();toast(copied?"Ringkasan pesanan disalin.":"Gagal menyalin. Coba lagi di browser yang mendukung salin teks.");
+  }
   function checkout(){
     const lines=cartLines();if(!lines.length){toast("Keranjang masih kosong.");return}
     const name=$("#customerName").value.trim();
     const total=lines.reduce((s,l)=>s+lineTotal(l.product,l.qty),0);
     const message=["Halo Duta Terang LED, saya ingin memesan:","",...lines.map(({product:p,qty},i)=>{const disc=discountFor(p,qty);return (i+1)+". "+p.name+" ("+p.code+") × "+qty+" = "+rupiah(lineTotal(p,qty))+(disc?" · diskon "+disc+"%":"")}),"","Estimasi total: "+rupiah(total),name?"Nama: "+name:null,"","Mohon konfirmasi stok dan harga terbaru. Harga serta diskon di katalog adalah contoh dan perlu dikonfirmasi."].filter(Boolean).join("\n");
-    chatWhatsApp(message);
+    copyOrderSummary(message);
   }
   categoryList.addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(!b)return;state.category=b.dataset.category;renderCategories();renderProducts()});
   productList.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(b)add(b.dataset.add)});
@@ -79,7 +84,6 @@
   $("#cartItems").addEventListener("click",e=>{const q=e.target.closest("[data-qty]"),r=e.target.closest("[data-remove]");if(q)add(q.dataset.qty,Number(q.dataset.delta));if(r){delete state.cart[r.dataset.remove];saveCart();renderCart();renderProducts();toast("Produk dihapus")}});
   $("#clearCart").addEventListener("click",()=>{state.cart={};saveCart();renderCart();renderProducts();toast("Keranjang dikosongkan")});
   $("#checkoutBtn").addEventListener("click",checkout);
-  document.querySelectorAll("[data-chat]").forEach(b=>b.addEventListener("click",()=>chatWhatsApp()));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart();if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#searchInput").focus()}});
   $("#year").textContent=new Date().getFullYear();
   renderCategories();renderProducts();renderCart();
