@@ -25,7 +25,7 @@ Buka `index.html` di browser atau gunakan ekstensi Live Server.
 
 ## Catatan
 - Produk dan harga bawaan merupakan data demo.
-- Keranjang tersimpan lokal di browser. Tidak ada pembayaran online, backend, atau sinkronisasi stok.
+- Keranjang tersimpan lokal di browser. Tidak ada pembayaran online, backend, atau sinkronisasi stok. Harga akhir dihitung di browser dan tetap harus dikonfirmasi oleh toko.
 - Pastikan data produk sudah benar sebelum mengarahkan domain `dutaled.my.id` ke hosting ini.
 
 
@@ -34,4 +34,4 @@ Buka `index.html` di browser atau gunakan ekstensi Live Server.
 - Data awal Lampu LED Aliano dan semua nilainya adalah SIMULASI; ganti dengan data resmi sebelum digunakan.
 - Tombol **Simpan di browser ini** menyimpan konfigurasi ke `localStorage` browser yang sedang digunakan. Tombol **Ekspor konfigurasi JSON** mengunduh konfigurasi untuk ditinjau atau dipakai pada integrasi berikutnya.
 - **Penting:** dashboard ini masih prototype lokal. Perubahan belum tersinkron ke katalog pelanggan atau perangkat lain, dan belum ada login/admin authentication. Jangan masukkan atau tampilkan harga modal di halaman publik.
-- Agar promo harian benar-benar langsung berlaku untuk semua pengunjung, tahap berikutnya adalah menghubungkan dashboard dan katalog ke database/API serta menambahkan autentikasi admin. Aturan diskon harus diterapkan dan divalidasi di sisi server.
+- Dengan target GitHub-only tanpa Supabase, ubah konfigurasi lalu commit `products.js` ke GitHub untuk memublikasikan harga ke semua pengunjung. Dashboard admin saat ini hanya menyimpan lokal dan mengekspor JSON; perubahan dashboard belum otomatis menulis ke GitHub. Harga modal tidak boleh ditaruh di `products.js` karena file itu dapat dibaca publik. Promo terjadwal akan berjalan otomatis pada katalog setelah properti `promo` yang benar ikut dipublikasikan di `products.js`.
