@@ -12,3 +12,50 @@
 .cart-discount{display:block;color:#28734d;font-size:10px;margin-top:3px}
 .cart-line .line-price{font-weight:700}
 @media(max-width:520px){.stock-note{font-size:8px}.price small s{font-size:8px}}
+
+/* Tampilan sederhana, mengutamakan layar HP */
+@media(max-width:640px){
+  html{scroll-padding-top:68px}
+  body{font-size:14px;line-height:1.45}
+  .announcement{font-size:10px;padding:7px 8px;letter-spacing:0}
+  .site-header{height:62px;padding:0 14px;gap:10px}
+  .brand{gap:7px;min-width:0}.brand-mark{width:33px;height:33px;border-radius:10px;font-size:19px}
+  .brand strong{font-size:16px}.brand small{font-size:8px;margin-top:2px;letter-spacing:.1em}
+  .desktop-nav{display:none}
+  .cart-trigger{padding:8px 10px;gap:6px;font-size:11px;white-space:nowrap}.cart-trigger b{min-width:20px;height:20px}
+  .hero{width:calc(100% - 24px);margin:12px auto 0;min-height:0;display:block;border-radius:16px}
+  .hero-copy{padding:25px 20px 23px}
+  .hero h1{font-size:clamp(29px,8vw,38px);line-height:1.12;letter-spacing:-.055em;margin:12px 0 10px}
+  .hero-copy>p{font-size:13px;line-height:1.6;margin:0;max-width:36ch}
+  .eyebrow{font-size:9px;letter-spacing:.1em}
+  .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:17px}
+  .hero-actions .btn{padding:12px 9px;font-size:11px;gap:5px;min-height:42px}
+  .hero-proof{margin-top:15px;gap:8px 14px;font-size:10px}
+  .hero-art{display:none}
+  .trust-strip{width:calc(100% - 24px);padding:13px 0;gap:8px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .trust-strip>div{gap:5px;align-items:flex-start}.trust-strip>div>span{font-size:9px}.trust-strip b{font-size:9px;line-height:1.3}.trust-strip small{font-size:8px;line-height:1.3}
+  .catalog{padding-top:24px;padding-bottom:24px}
+  .section-wrap{width:calc(100% - 24px)}
+  .section-heading{gap:8px}.section-heading h2{font-size:26px;line-height:1.2;margin:8px 0}.section-heading p{font-size:12px;line-height:1.55;margin:0}.product-total{font-size:11px}
+  .catalog-tools{margin-top:15px;gap:8px;flex-direction:column}
+  .search-box{height:44px;padding:0 12px;border-radius:11px}.search-box input{font-size:13px;min-width:0}.search-box kbd{display:none}
+  .catalog-tools select{height:42px;width:100%;font-size:12px;border-radius:11px}
+  .category-row{gap:7px;padding:12px 0 14px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}.category-row::-webkit-scrollbar{display:none}
+  .category-pill{white-space:nowrap;flex-shrink:0;padding:8px 11px;font-size:11px;border-radius:9px}
+  .products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .product-card{border-radius:12px;min-width:0;overflow:hidden}
+  .product-visual{aspect-ratio:1.2;background:#f0f3ed}.product-visual .product-emoji{font-size:43px}
+  .product-badge{font-size:8px;padding:4px 6px;top:6px;left:6px;max-width:calc(100% - 12px)}
+  .product-info{padding:10px 9px 9px}.product-category{font-size:9px}.product-info h3{font-size:12px;line-height:1.35;min-height:33px;margin:4px 0;overflow-wrap:anywhere}
+  .product-code{font-size:9px;overflow-wrap:anywhere}.price{font-size:14px;line-height:1.35;margin-top:8px}.price small{font-size:9px;line-height:1.4;margin-top:3px}
+  .product-bottom{margin-top:9px;gap:5px;align-items:center}.stock-note{font-size:8px;line-height:1.3}.add-button{width:32px;height:32px;flex-shrink:0;border-radius:9px;font-size:20px}
+  .sample-note{font-size:10px;line-height:1.5;margin-top:14px}
+  .wholesale-banner{padding:22px 18px;border-radius:15px;margin-top:8px;gap:12px}.wholesale-banner h2{font-size:25px;line-height:1.2;margin:9px 0}.wholesale-banner p{font-size:12px;line-height:1.55}.wholesale-banner .btn{width:100%;min-height:43px}
+  .contact-section{padding:28px 0;gap:12px}.contact-section h2{font-size:24px;line-height:1.2;margin:9px 0}.contact-section p{font-size:12px;line-height:1.6}.contact-section .btn{min-height:43px}
+  footer{gap:12px;padding:18px 12px;font-size:10px}footer p{font-size:10px}
+  .cart-drawer{width:min(100%,420px);padding:17px}.drawer-head h2{font-size:23px}.cart-line{gap:9px}.cart-thumb{width:42px;height:42px;flex-shrink:0}.cart-line h3{font-size:12px}.line-price{font-size:11px}.cart-footer{padding-top:12px}.checkout-btn{width:100%;min-height:46px}.customer-label{font-size:11px}
+  .toast{max-width:calc(100% - 24px);font-size:12px}
+}
+@media(max-width:360px){
+  .site-header{padding:0 10px}.cart-trigger span{display:none}.hero-copy{padding:22px 15px}.hero-actions{grid-template-columns:1fr}.products-grid{gap:7px}.product-info{padding:8px}.product-info h3{font-size:11px}.price{font-size:12px}.product-visual .product-emoji{font-size:36px}
+}
