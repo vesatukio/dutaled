@@ -27,3 +27,11 @@ Buka `index.html` di browser atau gunakan ekstensi Live Server.
 - Produk dan harga bawaan merupakan data demo.
 - Keranjang tersimpan lokal di browser. Tidak ada pembayaran online, backend, atau sinkronisasi stok.
 - Pastikan data produk sudah benar sebelum mengarahkan domain `dutaled.my.id` ke hosting ini.
+
+
+## Dashboard harga & promo (prototype)
+- Buka `admin.html` untuk mengubah varian, modal, harga jual, diskon retail, tingkat diskon kuantitas, dan periode promo.
+- Data awal Lampu LED Aliano dan semua nilainya adalah SIMULASI; ganti dengan data resmi sebelum digunakan.
+- Tombol **Simpan di browser ini** menyimpan konfigurasi ke `localStorage` browser yang sedang digunakan. Tombol **Ekspor konfigurasi JSON** mengunduh konfigurasi untuk ditinjau atau dipakai pada integrasi berikutnya.
+- **Penting:** dashboard ini masih prototype lokal. Perubahan belum tersinkron ke katalog pelanggan atau perangkat lain, dan belum ada login/admin authentication. Jangan masukkan atau tampilkan harga modal di halaman publik.
+- Agar promo harian benar-benar langsung berlaku untuk semua pengunjung, tahap berikutnya adalah menghubungkan dashboard dan katalog ke database/API serta menambahkan autentikasi admin. Aturan diskon harus diterapkan dan divalidasi di sisi server.
