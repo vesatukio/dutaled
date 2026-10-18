@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin Produk — DutaLED</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="supabase-config.js" defer></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a href="index.html" class="brand">✦ DUTA<span>LED</span></a><span>Panel admin produk</span><button id="logoutBtn" class="btn secondary hidden">Keluar</button></header>
+  <main class="wrap">
+    <section id="setupNotice" class="notice hidden"></section>
+    <section id="loginPanel" class="panel login-panel">
+      <p class="eyebrow">AREA TERBATAS</p><h1>Login admin</h1><p class="muted">Gunakan akun admin yang sudah dibuat di Supabase. Pendaftaran umum tidak tersedia di halaman ini.</p>
+      <form id="loginForm">
+        <label>Email<input id="email" type="email" autocomplete="username" required></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" required minlength="8"></label>
+        <button class="btn primary" type="submit">Masuk</button>
+        <p id="loginError" class="error" role="alert"></p>
+      </form>
+    </section>
+    <section id="adminPanel" class="hidden">
+      <div class="page-heading"><div><p class="eyebrow">MANAJEMEN KATALOG</p><h1>Produk DutaLED</h1><p class="muted">Edit kolom lalu tekan Simpan pada baris produk. Harga dan stok disimpan di database.</p></div><button id="addBtn" class="btn primary">+ Tambah produk</button></div>
+      <div class="toolbar"><input id="search" type="search" placeholder="Cari nama, kode, kategori…"><span id="status" class="muted" role="status"></span></div>
+      <div class="table-wrap"><table><thead><tr><th>Nama produk</th><th>Kode</th><th>Kategori</th><th>Harga (Rp)</th><th>Stok</th><th>Gambar (URL)</th><th>Deskripsi</th><th>Aktif</th><th>Aksi</th></tr></thead><tbody id="productRows"></tbody></table></div>
+      <p class="muted footnote">Catatan keamanan: biaya/modal tidak disimpan di tabel katalog publik. Jangan masukkan password atau secret key ke data produk.</p>
+    </section>
+  </main>
+</body>
+</html>
