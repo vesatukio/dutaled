@@ -1,7 +1,20 @@
 // DATA KATALOG DUTALED
-// Ganti nama, kode, kategori, harga, stok, gambar, dan label sesuai produk asli.
-// Harga di bawah adalah DATA CONTOH, bukan harga resmi toko.
+// HANYA data publik: jangan masukkan harga modal atau informasi rahasia di file ini.
+// Seluruh harga dan diskon di bawah adalah CONTOH dan harus diganti dengan data resmi toko.
+const alianoTiers = [{min:1,max:50,discount:32},{min:51,max:1000,discount:35}];
+const alianoVariants = [
+  ["5W",4500,6000,5,50],["7W",6000,8000,5,50],["9W",8000,12000,10,40],
+  ["12W",10000,14000,10,40],["15W",13000,18000,15,30],["18W",15000,22000,15,30],
+  ["25W",20000,28000,20,20],["30W",25000,35000,20,20],["40W",32000,45000,25,15],
+  ["50W",40000,55000,25,10]
+].map(([watt,_exampleCost,price,retailDiscount,stock])=>({
+  id:"aliano-"+watt.toLowerCase(),name:"Lampu LED Aliano "+watt,code:"ALIANO-"+watt,
+  category:"Lampu LED",price,retailDiscount,stock,badge:"Aliano",emoji:"💡",image:"",
+  description:"Varian daya Lampu LED Aliano. Harga contoh; konfirmasi harga dan stok sebelum memesan.",
+  quantityTiers:alianoTiers,promo:{name:"",discount:0,start:"",end:""}
+}));
 window.DUTALED_PRODUCTS = [
+ ...alianoVariants,
  {id:"led-bulb-9w",name:"Lampu LED 9W Putih",code:"DL-LMP-009",category:"Lampu LED",price:18000,stock:25,badge:"Populer",emoji:"💡",image:"",description:"Lampu LED untuk kebutuhan penerangan sehari-hari."},
  {id:"led-bulb-12w",name:"Lampu LED 12W Putih",code:"DL-LMP-012",category:"Lampu LED",price:24000,stock:20,badge:"Pilihan",emoji:"💡",image:"",description:"Lampu LED hemat energi untuk rumah dan toko."},
  {id:"led-bulb-18w",name:"Lampu LED 18W",code:"DL-LMP-018",category:"Lampu LED",price:35000,stock:15,badge:"",emoji:"🔆",image:"",description:"Lampu LED untuk ruangan yang membutuhkan cahaya lebih terang."},
