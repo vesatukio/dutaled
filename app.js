@@ -22,7 +22,7 @@
   function discountFor(p,qty=1){
     const tiers=Array.isArray(p.quantityTiers)?p.quantityTiers:[];
     const tier=tiers.find(t=>qty>=Number(t.min)&&qty<=Number(t.max));
-    let discount=tier?Number(tier.discount)||0:Number(p.retailDiscount)||0;
+    let discount=tier?Math.max(Number(tier.discount)||0,Number(p.retailDiscount)||0):Number(p.retailDiscount)||0;
     const promo=activePromo(p);
     if(promo)discount=Math.max(discount,Number(promo.discount)||0);
     return Math.min(100,Math.max(0,discount));
