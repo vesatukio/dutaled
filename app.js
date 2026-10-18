@@ -1,7 +1,7 @@
 /* DutaLED catalog: vanilla JS, no build step required. */
 (() => {
   "use strict";
-  let products = Array.isArray(window.DUTALED_PRODUCTS) ? window.DUTALED_PRODUCTS : [];
+  const products = Array.isArray(window.DUTALED_PRODUCTS) ? window.DUTALED_PRODUCTS : [];
   const $ = selector => document.querySelector(selector);
   const rupiah = value => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(value||0);
   const state = {category:"Semua",query:"",sort:"featured",selectedAliano:"aliano-5w",cart:readCart()};
@@ -102,20 +102,4 @@
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart();if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#searchInput").focus()}});
   $("#year").textContent=new Date().getFullYear();
   renderCategories();renderProducts();renderCart();
-  async function refreshCatalogFromDatabase(){
-    if(!window.supabase?.createClient||!window.DUTALED_SUPABASE_URL||!window.DUTALED_SUPABASE_KEY)return;
-    try{
-      const db=window.supabase.createClient(window.DUTALED_SUPABASE_URL,window.DUTALED_SUPABASE_KEY);
-      const {data,error}=await db.from("products").select("id,name,code,category,price,stock,badge,emoji,image,description,retail_discount,quantity_tiers,promo,sort_order,active").eq("active",true).order("sort_order").order("name");
-      if(error){console.warn("Katalog database belum tersedia; menggunakan data bawaan.",error.message);return}
-      if(Array.isArray(data)&&data.length){
-        products=data.map(p=>({...p,quantityTiers:p.quantity_tiers||[],retailDiscount:Number(p.retail_discount)||0}));
-        state.category="Semua";
-        renderCategories();renderProducts();renderCart();
-        document.querySelector(".sample-note")?.classList.add("hidden");
-      }
-    }catch(err){console.warn("Tidak dapat memuat katalog online.",err)}
-  }
-  refreshCatalogFromDatabase();
-  window.setInterval(()=>{refreshCatalogFromDatabase();renderProducts();renderCart()},60000);
 })();
