@@ -1,7 +1,7 @@
 // DATA KATALOG DUTALED
 // Catatan: biaya/modal di bawah tampil publik karena fitur estimasi laba diminta. Jangan pakai angka rahasia.
 // Seluruh harga dan diskon di bawah adalah CONTOH dan harus diganti dengan data resmi toko.
-const alianoTiers = [{min:1,max:50,discount:32},{min:51,max:1000,discount:35}];
+const alianoTiers = [{min:1,max:50,discount:5},{min:51,max:1000,discount:8}];
 const alianoVariants = [
   ["5W",4500,6000,5,50],["7W",6000,8000,5,50],["9W",8000,12000,10,40],
   ["12W",10000,14000,10,40],["15W",13000,18000,15,30],["18W",15000,22000,15,30],
