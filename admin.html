@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="admin.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="supabase-config.js" defer></script>
+  <script src="products.js" defer></script>
   <script src="admin.js" defer></script>
 </head>
 <body>
@@ -25,7 +26,7 @@
     </section>
     <section id="adminPanel" class="hidden">
       <div class="page-heading"><div><p class="eyebrow">MANAJEMEN KATALOG</p><h1>Produk DutaLED</h1><p class="muted">Edit kolom lalu tekan Simpan pada baris produk. Harga dan stok disimpan di database.</p></div><button id="addBtn" class="btn primary">+ Tambah produk</button></div>
-      <div class="toolbar"><input id="search" type="search" placeholder="Cari nama, kode, kategori…"><span id="status" class="muted" role="status"></span></div>
+      <div class="toolbar"><input id="search" type="search" placeholder="Cari nama, kode, kategori…"><button id="importBtn" class="btn secondary hidden">Impor katalog awal</button><span id="status" class="muted" role="status"></span></div>
       <div class="table-wrap"><table><thead><tr><th>Nama produk</th><th>Kode</th><th>Kategori</th><th>Harga (Rp)</th><th>Stok</th><th>Gambar (URL)</th><th>Deskripsi</th><th>Aktif</th><th>Aksi</th></tr></thead><tbody id="productRows"></tbody></table></div>
       <p class="muted footnote">Catatan keamanan: biaya/modal tidak disimpan di tabel katalog publik. Jangan masukkan password atau secret key ke data produk.</p>
     </section>
