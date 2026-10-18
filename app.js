@@ -4,7 +4,7 @@
   const products = Array.isArray(window.DUTALED_PRODUCTS) ? window.DUTALED_PRODUCTS : [];
   const $ = selector => document.querySelector(selector);
   const rupiah = value => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(value||0);
-  const state = {category:"Semua",query:"",sort:"featured",cart:readCart()};
+  const state = {category:"Semua",query:"",sort:"featured",selectedAliano:"aliano-5w",cart:readCart()};
   const productList=$("#productList"),categoryList=$("#categoryList");
   let toastTimer;
   function readCart(){try{return JSON.parse(localStorage.getItem("dutaled-cart")||"{}")}catch{return {}}}
@@ -36,15 +36,30 @@
     return result;
   }
   function imageMarkup(p){return p.image?'<img src="'+safe(p.image)+'" alt="'+safe(p.name)+'" loading="lazy" onerror="this.remove()">':'<span class="product-emoji" aria-hidden="true">'+safe(p.emoji||"💡")+'</span>'}
+  function profitFor(p,qty=1){const sale=unitPrice(p,qty);return sale-Number(p.cost||0)}
+  function priceMarkup(p,qty=1){
+    const discount=discountFor(p,qty),price=unitPrice(p,qty),profit=profitFor(p,qty),margin=price>0?Math.round(profit/price*100):0;
+    return '<div class="price">'+rupiah(price)+(discount?'<small><s>'+rupiah(p.price)+'</s> <span class="sale-badge">-'+discount+'%</span></small>':'<small>Harga per unit</small>')+'</div><div class="profit-note">Estimasi laba '+rupiah(profit)+' / unit ('+margin+'%)</div>';
+  }
+  function alianoCard(variants){
+    const selected=variants.find(p=>p.id===state.selectedAliano)||variants[0];
+    if(!selected)return '';
+    return '<article class="product-card aliano-card"><div class="product-visual"><span class="product-emoji" aria-hidden="true">💡</span><span class="product-badge">Pilih watt</span></div><div class="product-info"><span class="product-category">Lampu LED</span><h3>Lampu LED Aliano</h3><div class="product-code">Pilih daya dan harga sesuai varian</div><label class="variant-label">Varian daya<select class="variant-select" data-variant-select aria-label="Pilih watt lampu Aliano">'+variants.map(p=>'<option value="'+safe(p.id)+'" '+(p.id===selected.id?'selected':'')+'>'+safe(p.code.replace("ALIANO-",""))+' · '+rupiah(unitPrice(p,1))+'</option>').join("")+'</select></label>'+priceMarkup(selected,1)+'<div class="product-bottom"><small class="stock-note">'+(Number(selected.stock)>0?'Stok contoh: '+Number(selected.stock):'Stok perlu dikonfirmasi')+'</small><button class="add-button" data-add="'+safe(selected.id)+'" aria-label="Tambah '+safe(selected.name)+' ke keranjang" title="Tambah ke keranjang">+</button></div></div></article>';
+  }
   function renderProducts(){
-    const items=visibleProducts();$("#productTotal").textContent=items.length+" produk";
-    productList.innerHTML=items.map(p=>{
-      const discount=discountFor(p,1),price=unitPrice(p,1);
-      const priceMarkup=discount?'<div class="price">'+rupiah(price)+'<small><s>'+rupiah(p.price)+'</s> · diskon '+discount+'%</small></div>':'<div class="price">'+rupiah(price)+'<small>per unit · harga contoh</small></div>';
+    const items=visibleProducts();
+    const variants=items.filter(p=>p.id.startsWith("aliano-"));
+    const others=items.filter(p=>!p.id.startsWith("aliano-"));
+    const displayCount=others.length+(variants.length?1:0);
+    $("#productTotal").textContent=displayCount+" produk";
+    const cards=[];
+    if(variants.length)cards.push(alianoCard(products.filter(p=>p.id.startsWith("aliano-"))));
+    cards.push(...others.map(p=>{
       const stockText=Number(p.stock)>0?'Stok contoh: '+Number(p.stock):'Stok perlu dikonfirmasi';
-      return '<article class="product-card"><div class="product-visual">'+imageMarkup(p)+(p.badge?'<span class="product-badge">'+safe(p.badge)+'</span>':'')+'</div><div class="product-info"><span class="product-category">'+safe(p.category)+'</span><h3>'+safe(p.name)+'</h3><div class="product-code">Kode: '+safe(p.code)+'</div>'+priceMarkup+'<div class="product-bottom"><small class="stock-note">'+safe(stockText)+'</small><button class="add-button" data-add="'+safe(p.id)+'" aria-label="Tambah '+safe(p.name)+' ke keranjang" title="Tambah ke keranjang">+</button></div></div></article>';
-    }).join("");
-    $("#emptyState").classList.toggle("hidden",items.length>0);
+      return '<article class="product-card"><div class="product-visual">'+imageMarkup(p)+(p.badge?'<span class="product-badge">'+safe(p.badge)+'</span>':'')+'</div><div class="product-info"><span class="product-category">'+safe(p.category)+'</span><h3>'+safe(p.name)+'</h3><div class="product-code">Kode: '+safe(p.code)+'</div>'+priceMarkup(p,1)+'<div class="product-bottom"><small class="stock-note">'+safe(stockText)+'</small><button class="add-button" data-add="'+safe(p.id)+'" aria-label="Tambah '+safe(p.name)+' ke keranjang" title="Tambah ke keranjang">+</button></div></div></article>';
+    }));
+    productList.innerHTML=cards.join("");
+    $("#emptyState").classList.toggle("hidden",displayCount>0);
   }
   function cartCount(){return Object.values(state.cart).reduce((sum,q)=>sum+q,0)}
   function cartLines(){return Object.entries(state.cart).map(([id,qty])=>({product:getProduct(id),qty:Number(qty)})).filter(line=>line.product&&line.qty>0)}
@@ -53,8 +68,8 @@
     const lines=cartLines(),count=lines.reduce((s,l)=>s+l.qty,0),total=lines.reduce((sum,line)=>sum+lineTotal(line.product,line.qty),0);
     $("#cartCount").textContent=count;$("#drawerCount").textContent="("+count+")";$("#cartTotal").textContent=rupiah(total);
     $("#cartItems").innerHTML=lines.map(({product:p,qty})=>{
-      const discount=discountFor(p,qty),unit=unitPrice(p,qty);
-      return '<div class="cart-line"><div class="cart-thumb">'+(p.image?'<img src="'+safe(p.image)+'" alt="">':safe(p.emoji||"💡"))+'</div><div><h3>'+safe(p.name)+'</h3><div class="line-price">'+rupiah(unit)+' / unit · '+rupiah(unit*qty)+'</div>'+(discount?'<small class="cart-discount">Diskon '+discount+'% untuk jumlah '+qty+'</small>':'')+'<div class="quantity-control"><button data-qty="'+safe(p.id)+'" data-delta="-1" aria-label="Kurangi jumlah">−</button><span>'+qty+'</span><button data-qty="'+safe(p.id)+'" data-delta="1" aria-label="Tambah jumlah">+</button></div></div><button class="remove-line" data-remove="'+safe(p.id)+'" aria-label="Hapus '+safe(p.name)+'">✕</button></div>';
+      const discount=discountFor(p,qty),unit=unitPrice(p,qty),profit=profitFor(p,qty)*qty,saved=(Number(p.price)-unit)*qty;
+      return '<div class="cart-line"><div class="cart-thumb">'+(p.image?'<img src="'+safe(p.image)+'" alt="">':safe(p.emoji||"💡"))+'</div><div><h3>'+safe(p.name)+'</h3><div class="line-price">'+rupiah(unit)+' / unit · total '+rupiah(unit*qty)+'</div>'+(discount?'<small class="cart-discount">Diskon '+discount+'% · hemat '+rupiah(saved)+'</small>':'')+'<small class="cart-profit">Estimasi laba: '+rupiah(profit)+' total · '+rupiah(profit/qty)+'/unit</small><div class="quantity-control"><button data-qty="'+safe(p.id)+'" data-delta="-1" aria-label="Kurangi jumlah">−</button><span>'+qty+'</span><button data-qty="'+safe(p.id)+'" data-delta="1" aria-label="Tambah jumlah">+</button></div></div><button class="remove-line" data-remove="'+safe(p.id)+'" aria-label="Hapus '+safe(p.name)+'">✕</button></div>';
     }).join("");
     $("#cartEmpty").classList.toggle("hidden",lines.length>0);$("#cartFooter").classList.toggle("hidden",lines.length===0);
   }
@@ -77,6 +92,7 @@
   }
   categoryList.addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(!b)return;state.category=b.dataset.category;renderCategories();renderProducts()});
   productList.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(b)add(b.dataset.add)});
+  productList.addEventListener("change",e=>{const select=e.target.closest("[data-variant-select]");if(select){state.selectedAliano=select.value;renderProducts()}});
   $("#searchInput").addEventListener("input",e=>{state.query=e.target.value.trim();renderProducts()});
   $("#sortSelect").addEventListener("change",e=>{state.sort=e.target.value;renderProducts()});
   $("#resetFilters").addEventListener("click",()=>{state.category="Semua";state.query="";state.sort="featured";$("#searchInput").value="";$("#sortSelect").value="featured";renderCategories();renderProducts()});
@@ -87,4 +103,5 @@
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart();if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#searchInput").focus()}});
   $("#year").textContent=new Date().getFullYear();
   renderCategories();renderProducts();renderCart();
+  window.setInterval(()=>{renderProducts();renderCart()},60000);
 })();
