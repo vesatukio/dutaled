@@ -9,7 +9,7 @@ Katalog toko statis dan responsif menggunakan HTML, CSS, dan JavaScript murni. T
 - Layout responsif untuk HP, tablet, dan desktop.
 - Data produk dipisahkan dari tampilan agar mudah diedit.
 - Varian Lampu LED Aliano 5W, 7W, 9W, 12W, 15W, 18W, 25W, 30W, 40W, dan 50W dalam satu kartu pilihan watt.
-- Harga diskon otomatis dihitung ulang menurut jumlah pembelian dan promo dengan tanggal mulai/akhir di `products.js`.
+- Harga diskon otomatis dihitung ulang menurut jumlah pembelian dan promo bertanggal. Atur `promoToko` sekali di `products.js` untuk promo seluruh katalog, atau edit diskon retail/kuantitas per produk.
 - Estimasi laba rupiah dan persentase ditampilkan pada kartu produk dan keranjang setelah diskon.
 
 ## Konfigurasi
