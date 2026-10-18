@@ -8,6 +8,9 @@ Katalog toko statis dan responsif menggunakan HTML, CSS, dan JavaScript murni. T
 - Keranjang belanja dapat menyalin ringkasan pesanan tanpa layanan pesan eksternal.
 - Layout responsif untuk HP, tablet, dan desktop.
 - Data produk dipisahkan dari tampilan agar mudah diedit.
+- Varian Lampu LED Aliano 5W, 7W, 9W, 12W, 15W, 18W, 25W, 30W, 40W, dan 50W dalam satu kartu pilihan watt.
+- Harga diskon otomatis dihitung ulang menurut jumlah pembelian dan promo dengan tanggal mulai/akhir di `products.js`.
+- Estimasi laba rupiah dan persentase ditampilkan pada kartu produk dan keranjang setelah diskon.
 
 ## Konfigurasi
 2. Edit `products.js` untuk mengganti nama, kode, kategori, harga, stok, badge, emoji, deskripsi, dan URL gambar. Harga bawaan adalah DATA CONTOH, bukan harga resmi.
@@ -25,8 +28,9 @@ Buka `index.html` di browser atau gunakan ekstensi Live Server.
 ## Catatan
 - Semua produk langsung tampil pada halaman utama; tidak ada halaman admin atau tombol WhatsApp.
 - Tombol pada keranjang menyalin ringkasan pesanan agar bisa disimpan atau ditempel secara manual.
-- Produk dan harga bawaan merupakan data demo.
-- Keranjang tersimpan lokal di browser. Tidak ada pembayaran online, backend, atau sinkronisasi stok. Harga akhir dihitung di browser dan tetap harus dikonfirmasi oleh toko.
+- Produk, harga, modal, laba, dan stok bawaan merupakan data demo. Ganti semuanya dengan angka sebenarnya sebelum dipakai.
+- Karena fitur laba ditampilkan pada katalog publik, properti `cost` di `products.js` dapat dilihat pengunjung melalui sumber halaman. Jangan gunakan biaya/modal rahasia; jika margin harus privat, perhitungan laba perlu dipindah ke area admin/backend yang terlindungi.
+- Keranjang tersimpan lokal di browser. Tidak ada pembayaran online, backend, atau sinkronisasi stok. Harga diskon terjadwal akan berubah otomatis di browser saat periode promo dimulai/berakhir, dan halaman memperbarui tampilan tiap menit. Untuk mengubah diskon, edit `retailDiscount`, `quantityTiers`, atau `promo` di `products.js` lalu commit ke GitHub. Harga akhir dihitung di browser dan tetap harus dikonfirmasi oleh toko.
 - Pastikan data produk sudah benar sebelum mengarahkan domain `dutaled.my.id` ke hosting ini.
 
 
