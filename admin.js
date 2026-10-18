@@ -25,7 +25,7 @@
     status("Memuat data…");
     const {data,error}=await client.from("products").select(columns).order("sort_order").order("name");
     if(error){status("Gagal memuat data");setupMessage("Database belum siap atau akses ditolak: "+error.message+" — jalankan supabase-setup.sql sesuai panduan.");return}
-    products=data||[];render();status(products.length+" produk");
+    products=data||[];render();$("#importBtn").classList.toggle("hidden",products.length>0);status(products.length+" produk");
   }
   function inputCell(field,value,type="text",cls=""){
     if(type==="checkbox")return '<td class="active-cell"><input type="checkbox" data-field="'+field+'" '+(value?"checked":"")+' aria-label="Produk aktif"></td>';
@@ -59,6 +59,15 @@
   });
   $("#logoutBtn").addEventListener("click",async()=>{await client.auth.signOut();currentUser=null;showAdmin(false);loginError.textContent="Anda sudah keluar."});
   $("#search").addEventListener("input",render);
+  $("#importBtn").addEventListener("click",async()=>{
+    const seed=Array.isArray(window.DUTALED_PRODUCTS)?window.DUTALED_PRODUCTS:[];
+    if(!seed.length){status("Data katalog awal tidak ditemukan.");return}
+    if(!confirm("Impor "+seed.length+" produk dari katalog lama? Harga dan stok bawaan perlu diverifikasi."))return;
+    const rows=seed.map((p,i)=>({id:p.id,name:p.name,code:p.code,category:p.category||"Lainnya",price:num(p.price),stock:Math.max(0,Math.floor(num(p.stock))),badge:p.badge||"",emoji:p.emoji||"💡",image:p.image||"",description:p.description||"",retail_discount:num(p.retailDiscount),quantity_tiers:p.quantityTiers||[],promo:p.promo||{},sort_order:i,active:true}));
+    const {error}=await client.from("products").upsert(rows,{onConflict:"id"});
+    if(error){status("Impor gagal: "+error.message);return}
+    await loadProducts();status("Katalog awal berhasil diimpor. Verifikasi harga dan stok.");
+  });
   $("#addBtn").addEventListener("click",async()=>{
     const id="produk-"+crypto.randomUUID().slice(0,8);
     const {error}=await client.from("products").insert({id,name:"Produk baru",code:id.toUpperCase(),category:"Lainnya",price:0,stock:0,sort_order:products.length,active:true});
