@@ -10,7 +10,8 @@
 
   let installPrompt = null;
   const button = document.getElementById("installPwaButton");
-  if (!button) return;\n  button.classList.remove("hidden");
+  if (!button) return;
+  button.classList.remove("hidden");
 
   window.addEventListener("beforeinstallprompt", event => {
     event.preventDefault();
