@@ -72,7 +72,7 @@
     <div class="home-camera-card">
       <div class="home-camera-head"><div><span class="eyebrow">KASIR CEPAT</span><h2 id="homeCameraTitle">Scan barcode produk</h2></div><button type="button" id="homeCameraClose" class="icon-button" aria-label="Tutup kamera">✕</button></div>
       <p>Arahkan kamera belakang HP ke barcode. Jika kode cocok dengan SKU katalog, halaman kasir akan terbuka otomatis.</p>
-      <video id="homeCameraVideo" playsinline muted></video>
+      <video id="homeCameraVideo" playsinline muted></video>\n      <div id="homeCameraReader" class="hidden"></div>
       <p id="homeCameraStatus" role="status">Tekan mulai untuk mengizinkan kamera.</p>
       <div class="home-camera-actions"><button type="button" class="btn btn-green" id="homeCameraEnable">Mulai kamera</button><button type="button" class="btn btn-light hidden" id="homeCameraStop">Tutup kamera</button></div>
     </div>
@@ -81,7 +81,7 @@
     .home-camera-modal{position:fixed;inset:0;z-index:9999;background:rgba(12,22,17,.72);display:flex;align-items:center;justify-content:center;padding:16px}
     .home-camera-modal.hidden{display:none}.home-camera-card{background:#fff;color:#17231f;width:min(520px,100%);border-radius:18px;padding:20px;box-shadow:0 20px 80px #0005}
     .home-camera-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.home-camera-head h2{margin:4px 0;font-size:22px}.home-camera-card>p{font-size:13px;color:#68746d;line-height:1.5}
-    #homeCameraVideo{width:100%;max-height:52vh;object-fit:cover;background:#101510;border-radius:12px;display:block}
+    #homeCameraVideo{width:100%;max-height:52vh;object-fit:cover;background:#101510;border-radius:12px;display:block}\n    #homeCameraReader{width:100%;min-height:240px;overflow:hidden;border-radius:12px;background:#101510}\n    #homeCameraReader video{width:100%;max-height:52vh;object-fit:cover}
     #homeCameraStatus{min-height:20px;color:#1e6b4b;font-size:12px}.home-camera-actions{display:flex;gap:8px;flex-wrap:wrap}
   </style>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
