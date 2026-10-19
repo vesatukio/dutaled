@@ -1,0 +1,1 @@
+{"name":"Volix - Stok & Laba","short_name":"Volix","description":"Aplikasi stok dan estimasi laba offline","start_url":"./index.html","scope":"./","display":"standalone","orientation":"portrait","background_color":"#f4f6fb","theme_color":"#172554","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
