@@ -87,4 +87,11 @@ window.addEventListener("pagehide",stopCamera);
 window.addEventListener("resize",()=>{if($("#panel-laporan").classList.contains("active"))renderReport()});
 $("#todayDate").textContent=new Date().toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 refresh();
+const initialScan = new URLSearchParams(window.location.search).get("scan");
+if (initialScan) {
+ const normalizedScan = initialScan.trim().toUpperCase();
+ const matchedProduct = productByCode.get(normalizedScan) || baseProducts.find(p => [p.id,p.code,p.sku,p.barcode].some(v => String(v || "").toUpperCase() === normalizedScan));
+ if (matchedProduct) addProduct(matchedProduct);
+ else msg("scanStatus",'Barcode "' + initialScan + '" terbaca, tetapi belum cocok dengan SKU/barcode produk. Pastikan kode barcode sudah dimasukkan ke data produk.');
+}
 })();
