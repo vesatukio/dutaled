@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="products.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="home-scan.js" defer></script>
 </head>
 <body>
   <div class="announcement">💡 Katalog Duta Terang LED <span>•</span> Eceran & grosir</div>
@@ -27,7 +28,7 @@
         <span class="eyebrow"><i></i> SOLUSI PENERANGAN ANDA</span>
         <h1>Terangi setiap ruang.<br><em>Hemat setiap hari.</em></h1>
         <p>Temukan lampu LED dan sparepart pilihan untuk rumah, toko listrik, proyek, dan kebutuhan teknisi.</p>
-        <div class="hero-actions"><a class="btn btn-dark" href="#produk">Lihat semua produk <span>↘</span></a><a class="btn btn-light" href="#produk">Cari produk</a></div>
+        <div class="hero-actions"><button class="btn btn-dark" id="homeCameraStart" type="button">📷 Scan barcode <span>↗</span></button><a class="btn btn-light" href="#produk">Cari produk</a></div>
         <div class="hero-proof"><span>✓ Pilihan produk beragam</span><span>✓ Eceran & grosir</span></div>
       </div>
       <div class="hero-art" aria-label="Ilustrasi lampu menyala">
@@ -67,6 +68,22 @@
       <button class="clear-cart" id="clearCart">Kosongkan keranjang</button>
     </div>
   </aside>
+  <section id="homeCameraModal" class="home-camera-modal hidden" role="dialog" aria-modal="true" aria-labelledby="homeCameraTitle">
+    <div class="home-camera-card">
+      <div class="home-camera-head"><div><span class="eyebrow">KASIR CEPAT</span><h2 id="homeCameraTitle">Scan barcode produk</h2></div><button type="button" id="homeCameraClose" class="icon-button" aria-label="Tutup kamera">✕</button></div>
+      <p>Arahkan kamera belakang HP ke barcode. Jika kode cocok dengan SKU katalog, halaman kasir akan terbuka otomatis.</p>
+      <video id="homeCameraVideo" playsinline muted></video>
+      <p id="homeCameraStatus" role="status">Tekan mulai untuk mengizinkan kamera.</p>
+      <div class="home-camera-actions"><button type="button" class="btn btn-green" id="homeCameraEnable">Mulai kamera</button><button type="button" class="btn btn-light hidden" id="homeCameraStop">Tutup kamera</button></div>
+    </div>
+  </section>
+  <style>
+    .home-camera-modal{position:fixed;inset:0;z-index:9999;background:rgba(12,22,17,.72);display:flex;align-items:center;justify-content:center;padding:16px}
+    .home-camera-modal.hidden{display:none}.home-camera-card{background:#fff;color:#17231f;width:min(520px,100%);border-radius:18px;padding:20px;box-shadow:0 20px 80px #0005}
+    .home-camera-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.home-camera-head h2{margin:4px 0;font-size:22px}.home-camera-card>p{font-size:13px;color:#68746d;line-height:1.5}
+    #homeCameraVideo{width:100%;max-height:52vh;object-fit:cover;background:#101510;border-radius:12px;display:block}
+    #homeCameraStatus{min-height:20px;color:#1e6b4b;font-size:12px}.home-camera-actions{display:flex;gap:8px;flex-wrap:wrap}
+  </style>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
