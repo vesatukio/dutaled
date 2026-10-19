@@ -41,6 +41,49 @@ $("#productSearch").addEventListener("input",renderPicker);$("#manageSearch").ad
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.tab)switchTab(b.dataset.tab);if(b.dataset.goto)switchTab(b.dataset.goto);if(b.dataset.add)addProduct(productById.get(b.dataset.add));if(b.dataset.remove){delete state.cart[b.dataset.remove];renderCart()}if(b.dataset.saveproduct){const id=b.dataset.saveproduct,priceInput=document.querySelector('[data-price="'+CSS.escape(id)+'"]'),costInput=document.querySelector('[data-cost="'+CSS.escape(id)+'"]');state.prices[id]=num(priceInput.value);state.costs[id]=num(costInput.value);persist();renderManage();renderPicker();renderCart();renderMini();msg("scanStatus","Harga jual dan modal disimpan di perangkat ini.")}if(b.id==="clearSale"){state.cart={};renderCart();msg("saleStatus","Transaksi dikosongkan.")}if(b.id==="saveSale"){const items=cartLines();if(!items.length)return;const t=totals(items);const sale={id:"DL-"+Date.now().toString(36).toUpperCase(),createdAt:new Date().toISOString(),customer:$("#customer").value.trim(),payment:$("#payment").value,items,revenue:t.revenue,cost:t.cost,profit:t.profit};state.sales.push(sale);state.cart={};persist();renderCart();renderMini();renderReport();renderHistory();$("#customer").value="";msg("saleStatus","Transaksi "+sale.id+" berhasil disimpan di perangkat ini.");msg("scanStatus","");}if(b.id==="exportCsv"){const sales=state.sales.filter(s=>inRange(s,$("#reportRange").value));csvDownload("laporan-dutaled-"+dateKey(new Date())+".csv",[["Tanggal","ID Transaksi","Pelanggan","Pembayaran","SKU","Produk","Qty","Harga/unit","Subtotal","Modal/unit","Laba"],...sales.flatMap(s=>s.items.map(i=>[s.createdAt,s.id,s.customer,s.payment,i.code,i.name,i.qty,i.price,i.total,i.cost,i.profit]))])}if(b.id==="exportHistory"){csvDownload("transaksi-dutaled.csv",[["Waktu","ID","Pelanggan","Pembayaran","Omzet","Modal","Laba","Jumlah jenis"],...state.sales.map(s=>[s.createdAt,s.id,s.customer,s.payment,s.revenue,s.cost,s.profit,s.items.length])])}if(b.id==="exportProducts"){csvDownload("produk-dutaled.csv",[["SKU","Nama","Harga jual","Modal/unit"],...baseProducts.map(p=>[p.code,p.name,sellPrice(p),costPrice(p)])])}if(b.id==="backupJson"){const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),prices:state.prices,costs:state.costs,sales:state.sales},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="cadangan-dutaled.json";a.click();URL.revokeObjectURL(a.href)}if(b.dataset.delete){if(confirm("Hapus transaksi "+b.dataset.delete+"? Data laporan akan ikut berubah.")){state.sales=state.sales.filter(s=>s.id!==b.dataset.delete);persist();refresh()}}});
 document.addEventListener("change",e=>{const el=e.target;if(el.dataset.cartqty){const q=num(el.value);if(q)state.cart[el.dataset.cartqty]=q;else delete state.cart[el.dataset.cartqty];renderCart()}});
 $("#importJson").addEventListener("change",async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data||!Array.isArray(data.sales)||!data.prices||!data.costs)throw new Error("Format cadangan tidak valid");if(!confirm("Pulihkan cadangan? Data harga/modal dan riwayat saat ini akan diganti."))return;state.sales=data.sales;state.prices=data.prices;state.costs=data.costs;persist();refresh();alert("Cadangan berhasil dipulihkan.")}catch(err){alert("Gagal memulihkan cadangan: "+err.message)}finally{e.target.value=""}});
+let cameraStream=null,cameraActive=false,cameraFrame=0,lastCameraCode="",lastCameraAt=0,barcodeDetector=null;
+function stopCamera(){
+ cameraActive=false;if(cameraFrame)cancelAnimationFrame(cameraFrame);cameraFrame=0;
+ if(cameraStream){cameraStream.getTracks().forEach(track=>track.stop());cameraStream=null}
+ const video=$("#cameraVideo");if(video)video.srcObject=null;
+ $("#cameraBox").classList.add("hidden");$("#cameraStop").classList.add("hidden");$("#cameraStart").classList.remove("hidden");
+}
+async function startCamera(){
+ if(!("BarcodeDetector" in window)){msg("scanStatus","Browser ini belum mendukung scan barcode kamera. Coba Chrome terbaru di Android, atau gunakan input SKU.");return}
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){msg("scanStatus","Akses kamera tidak tersedia. Buka situs melalui HTTPS dan izinkan kamera.");return}
+ try{
+  barcodeDetector=new BarcodeDetector({formats:["code_128","code_39","ean_13","ean_8","upc_a","upc_e","itf","qr_code","codabar","data_matrix"]});
+  cameraStream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:"environment"},width:{ideal:1280},height:{ideal:720}}});
+  const video=$("#cameraVideo");video.srcObject=cameraStream;await video.play();
+  cameraActive=true;$("#cameraBox").classList.remove("hidden");$("#cameraStop").classList.remove("hidden");$("#cameraStart").classList.add("hidden");
+  msg("scanStatus","Kamera aktif. Arahkan barcode ke kamera belakang.");
+  scanCameraFrame();
+ }catch(err){stopCamera();msg("scanStatus",err&&err.name==="NotAllowedError"?"Izin kamera ditolak. Izinkan kamera melalui pengaturan situs/browser.":"Kamera gagal dibuka. Pastikan kamera tidak sedang dipakai aplikasi lain dan coba lagi.")}
+}
+async function scanCameraFrame(){
+ if(!cameraActive)return;
+ const video=$("#cameraVideo");
+ if(video&&video.readyState>=2){
+  try{
+   const codes=await barcodeDetector.detect(video);
+   if(codes.length){
+    const raw=String(codes[0].rawValue||"").trim(),now=Date.now();
+    if(raw&&(raw!==lastCameraCode||now-lastCameraAt>1800)){
+     lastCameraCode=raw;lastCameraAt=now;
+     const normalized=raw.toUpperCase();
+     const p=productByCode.get(normalized)||baseProducts.find(x=>[x.id,x.code,x.sku,x.barcode].some(v=>String(v||"").toUpperCase()===normalized));
+     if(p){addProduct(p);msg("scanStatus","Barcode "+raw+" berhasil ditambahkan: "+p.name)}
+     else msg("scanStatus",'Barcode "'+raw+'" terbaca, tetapi belum cocok dengan SKU/barcode produk. Tambahkan kode ini pada data produk.');
+    }
+   }
+  }catch(err){/* Abaikan frame yang gagal dibaca; lanjutkan pemindaian. */}
+ }
+ if(cameraActive)cameraFrame=requestAnimationFrame(scanCameraFrame);
+}
+$("#cameraStart").addEventListener("click",startCamera);
+$("#cameraStop").addEventListener("click",stopCamera);
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&cameraActive)stopCamera()});
+window.addEventListener("pagehide",stopCamera);
 window.addEventListener("resize",()=>{if($("#panel-laporan").classList.contains("active"))renderReport()});
 $("#todayDate").textContent=new Date().toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 refresh();
