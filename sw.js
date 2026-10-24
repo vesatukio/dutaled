@@ -1,4 +1,4 @@
-const CACHE_NAME = "dutaled-pwa-v2";
+const CACHE_NAME = "volix-pwa-v3";
 const CORE_ASSETS = [
   "/", "/index.html", "/style.css", "/products.js", "/app.js",
   "/home-scan.js", "/kasir.html", "/kasir.js", "/manifest.webmanifest",
