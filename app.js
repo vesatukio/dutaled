@@ -86,7 +86,7 @@
     const lines=cartLines();if(!lines.length){toast("Keranjang masih kosong.");return}
     const name=$("#customerName").value.trim();
     const total=lines.reduce((s,l)=>s+lineTotal(l.product,l.qty),0);
-    const message=["Halo VOLIX, saya ingin memesan:","",...lines.map(({product:p,qty},i)=>{const disc=discountFor(p,qty);return (i+1)+". "+p.name+" ("+p.code+") × "+qty+" = "+rupiah(lineTotal(p,qty))+(disc?" · diskon "+disc+"%":"")}),"","Estimasi total: "+rupiah(total),name?"Nama: "+name:null,"","Mohon konfirmasi stok dan harga terbaru. Harga serta diskon di katalog adalah contoh dan perlu dikonfirmasi."].filter(Boolean).join("\n");
+    const message=["Halo Duta Terang LED, saya ingin memesan:","",...lines.map(({product:p,qty},i)=>{const disc=discountFor(p,qty);return (i+1)+". "+p.name+" ("+p.code+") × "+qty+" = "+rupiah(lineTotal(p,qty))+(disc?" · diskon "+disc+"%":"")}),"","Estimasi total: "+rupiah(total),name?"Nama: "+name:null,"","Mohon konfirmasi stok dan harga terbaru. Harga serta diskon di katalog adalah contoh dan perlu dikonfirmasi."].filter(Boolean).join("\n");
     copyOrderSummary(message);
   }
   categoryList.addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(!b)return;state.category=b.dataset.category;renderCategories();renderProducts()});
