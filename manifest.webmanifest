@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "VOLIX — Katalog & Kasir",
-  "short_name": "VOLIX",
-  "description": "Katalog lampu LED, sparepart, dan kasir VOLIX.",
+  "name": "Duta Terang LED — Katalog & Kasir",
+  "short_name": "DutaLED",
+  "description": "Katalog lampu LED, sparepart, dan kasir Duta Terang LED.",
   "lang": "id-ID",
   "start_url": "/",
   "scope": "/",
