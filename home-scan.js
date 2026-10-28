@@ -77,7 +77,7 @@
   }
   async function startCamera() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      status.textContent = "Kamera tidak tersedia. Buka https://volix.my.id dan izinkan akses kamera.";
+      status.textContent = "Kamera tidak tersedia. Buka https://dutaled.my.id dan izinkan akses kamera.";
       return;
     }
     if (!("BarcodeDetector" in window)) {
