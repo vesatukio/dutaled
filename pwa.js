@@ -3,7 +3,7 @@
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
     window.addEventListener("load", () => {
       navigator.serviceWorker.register("/sw.js").catch(error => {
-        console.warn("VOLIX: service worker belum terdaftar.", error);
+        console.warn("Duta Terang LED: service worker belum terdaftar.", error);
       });
     });
   }
@@ -21,7 +21,7 @@
 
   button.addEventListener("click", async () => {
     if (!installPrompt) {
-      alert('Untuk memasang VOLIX di Android, buka menu ⋮ Chrome lalu pilih "Tambahkan ke layar utama" atau "Install app". Di iPhone/iPad, tekan Bagikan lalu "Add to Home Screen".');
+      alert('Untuk memasang Duta Terang LED di Android, buka menu ⋮ Chrome lalu pilih "Tambahkan ke layar utama" atau "Install app". Di iPhone/iPad, tekan Bagikan lalu "Add to Home Screen".');
       return;
     }
     installPrompt.prompt();
