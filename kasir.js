@@ -90,6 +90,7 @@ window.addEventListener("resize",()=>{if($("#panel-laporan").classList.contains(
 $("#todayDate").textContent=new Date().toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 refresh();
 initPriceCalc();
+if (window.location.hash === "#panel-produk") switchTab("produk");
 const initialScan = new URLSearchParams(window.location.search).get("scan");
 if (initialScan) {
  const normalizedScan = initialScan.trim().toUpperCase();
