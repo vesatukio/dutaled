@@ -1,36 +1,33 @@
-# DutaLED — Katalog Toko
+# Duta Terang LED — Katalog & Kasir
 
-Katalog toko statis dan responsif menggunakan HTML, CSS, dan JavaScript murni. Tidak perlu npm/build step; cocok untuk GitHub Pages atau hosting statis.
+Website statis responsif untuk katalog produk dan operasional toko. Berjalan tanpa proses build.
 
-## Fitur
-- Katalog produk dengan kategori, pencarian nama/kode, dan pengurutan harga.
-- Keranjang belanja, ubah kuantitas, hapus produk, dan penyimpanan keranjang di browser.
-- Keranjang belanja dapat menyalin ringkasan pesanan tanpa layanan pesan eksternal.
-- Layout responsif untuk HP, tablet, dan desktop.
-- Data produk dipisahkan dari tampilan agar mudah diedit.
-- Varian Lampu LED Aliano 5W, 7W, 9W, 12W, 15W, 18W, 25W, 30W, 40W, dan 50W dalam satu kartu pilihan watt.
-- Harga diskon otomatis dihitung ulang menurut jumlah pembelian dan promo bertanggal. Atur `promoToko` sekali di `products.js` untuk promo seluruh katalog, atau edit diskon retail/kuantitas per produk.
-- Estimasi laba rupiah dan persentase ditampilkan pada kartu produk dan keranjang setelah diskon.
+## Fitur utama
+- Katalog dengan pencarian, kategori, varian watt, diskon, dan keranjang.
+- Kasir: scan SKU/barcode melalui input atau kamera, transaksi, riwayat, dan laporan.
+- Pengelolaan harga jual dan modal per produk.
+- Kalkulator harga supplier dengan diskon supplier terpisah, modal bersih, target kenaikan, harga jual, untung nominal, dan margin.
+- Ekspor/pulihkan cadangan data melalui halaman kasir.
+- PWA yang bisa dipasang di HP dan mendukung cache offline dasar.
 
-## Konfigurasi
-2. Edit `products.js` untuk mengganti nama, kode, kategori, harga, stok, badge, emoji, deskripsi, dan URL gambar. Harga bawaan adalah DATA CONTOH, bukan harga resmi.
-3. Isi properti `image` tiap produk dengan URL gambar publik untuk menampilkan foto produk asli. Jika kosong, katalog memakai emoji.
-4. Uji pencarian, kategori, keranjang, dan checkout sebelum mempublikasikan.
+## File penting
+- `index.html`, `style.css`, `app.js`: katalog publik.
+- `products.js`: data produk katalog. **Harga dan stok bawaan adalah contoh; periksa sebelum dipakai.**
+- `kasir.html`, `kasir.js`: kasir, laporan, modal produk, dan kalkulator harga.
+- `home-scan.js`: scan barcode dari halaman katalog.
+- `manifest.webmanifest`, `pwa.js`, `sw.js`: fitur PWA.
+- `admin.html`, `admin.js`, `admin.css`: alat admin yang tersedia di proyek.
 
-## Menjalankan lokal
-Buka `index.html` di browser atau gunakan ekstensi Live Server.
+## Cara menggunakan kalkulator harga
+1. Buka halaman **Kasir & laporan**, lalu pilih tab **Produk & modal**.
+2. Isi harga supplier dan diskon supplier. Kalkulator menghitung modal bersih setelah diskon.
+3. Masukkan target kenaikan dari modal bersih dan periksa harga jual, untung, serta margin.
+4. Pilih produk jika ingin menyimpan modal bersih dan harga jual ke produk tersebut.
+5. Buat cadangan data secara berkala.
 
-## Deploy ke GitHub Pages
-1. Buka repository **Settings → Pages**.
-2. Pilih **Deploy from a branch**, branch `main`, folder `/ (root)`, lalu Save.
-3. Tunggu workflow selesai dan gunakan URL yang ditampilkan di halaman Pages.
-
-## Catatan
-- Semua produk langsung tampil pada halaman utama; tidak ada halaman admin atau tombol WhatsApp.
-- Tombol pada keranjang menyalin ringkasan pesanan agar bisa disimpan atau ditempel secara manual.
-- Produk, harga, modal, laba, dan stok bawaan merupakan data demo. Ganti semuanya dengan angka sebenarnya sebelum dipakai.
-- Karena fitur laba ditampilkan pada katalog publik, properti `cost` di `products.js` dapat dilihat pengunjung melalui sumber halaman. Jangan gunakan biaya/modal rahasia; jika margin harus privat, perhitungan laba perlu dipindah ke area admin/backend yang terlindungi.
-- Keranjang tersimpan lokal di browser. Tidak ada pembayaran online, backend, atau sinkronisasi stok. Harga diskon terjadwal akan berubah otomatis di browser saat periode promo dimulai/berakhir, dan halaman memperbarui tampilan tiap menit. Untuk mengubah diskon, edit `retailDiscount`, `quantityTiers`, atau `promo` di `products.js` lalu commit ke GitHub. Harga akhir dihitung di browser dan tetap harus dikonfirmasi oleh toko.
-- Pastikan data produk sudah benar sebelum mengarahkan domain `dutaled.my.id` ke hosting ini.
-
-
+## Penting
+- Data kasir, modal, dan transaksi disimpan di browser/perangkat yang digunakan; belum otomatis tersinkron ke perangkat lain atau Google Sheet.
+- Data modal di kasir bersifat lokal pada browser. Jangan menghapus data browser sebelum mengekspor cadangan.
+- Harga, diskon, dan stok di `products.js` harus diperiksa dan diganti dengan data toko sebenarnya.
+- Harga katalog publik bukan jaminan harga akhir; konfirmasikan stok dan harga saat transaksi.
+- Domain GitHub Pages dikonfigurasi melalui file `CNAME` dan menu **Settings → Pages**.
