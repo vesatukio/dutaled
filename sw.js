@@ -1,4 +1,4 @@
-const CACHE_NAME = "volix-pwa-v3";
+const CACHE_NAME = "dutaled-pwa-v4";
 const CORE_ASSETS = [
   "/", "/index.html", "/style.css", "/products.js", "/app.js",
   "/home-scan.js", "/kasir.html", "/kasir.js", "/manifest.webmanifest",
@@ -16,7 +16,7 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(key => key.startsWith("dutaled-pwa-") && key !== CACHE_NAME).map(key => caches.delete(key))))
+      .then(keys => Promise.all(keys.filter(key => (key.startsWith("dutaled-pwa-") || key.startsWith("volix-pwa-")) && key !== CACHE_NAME).map(key => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
